@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/motion";
 import { posts } from "@/lib/site";
-import { canonicalLinks } from "@/lib/seo";
+import { absoluteUrl, canonicalLinks, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
@@ -25,8 +25,36 @@ export const Route = createFileRoute("/blog/")({
 });
 
 function BlogPage() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": `${absoluteUrl("/blog")}#journal`,
+    name: "Weldent Dental Journal",
+    url: absoluteUrl("/blog"),
+    inLanguage: "en-IN",
+    publisher: { "@type": "Dentist", "@id": `${SITE_URL}/#clinic` },
+    blogPost: posts.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: post.excerpt,
+      datePublished: post.datePublished,
+      dateModified: post.dateModified,
+      url: absoluteUrl(`/blog/${post.slug}`),
+      author: {
+        "@type": "Person",
+        "@id": `${absoluteUrl("/doctors/dr-sheetal-kumar-g")}#doctor`,
+      },
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
       <PageHero
         eyebrow="Journal"
         title="Straight answers, no scare tactics."

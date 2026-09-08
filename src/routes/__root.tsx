@@ -14,7 +14,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileActionBar, WhatsAppButton } from "@/components/FloatingActions";
 import { BookingProvider } from "@/components/BookingContext";
-import { clinic } from "@/lib/site-core";
+import { clinic, serviceNav } from "@/lib/site-core";
 import { absoluteUrl, SITE_URL } from "@/lib/seo";
 
 function NotFoundComponent() {
@@ -86,7 +86,12 @@ export const Route = createRootRoute({
           "Dental clinic in Kalena Agrahara near Bannerghatta Road, Bengaluru. Book preventive, restorative and specialised dental care with Weldent Dental.",
       },
       { name: "author", content: clinic.businessName },
-      { name: "robots", content: "index, follow, max-image-preview:large" },
+      {
+        name: "robots",
+        content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      },
+      { name: "geo.region", content: "IN-KA" },
+      { name: "geo.placename", content: "Kalena Agrahara, Bengaluru" },
       { name: "theme-color", content: "#194c75" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: clinic.businessName },
@@ -116,6 +121,12 @@ export const Route = createRootRoute({
         crossOrigin: "anonymous",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      {
+        rel: "alternate",
+        type: "application/rss+xml",
+        title: "Weldent Dental Journal",
+        href: absoluteUrl("/feed.xml"),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -134,53 +145,85 @@ function RootShell({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Dentist",
-              "@id": `${SITE_URL}/#clinic`,
-              name: clinic.businessName,
-              alternateName: clinic.name,
-              url: SITE_URL,
-              image: absoluteUrl("/images/clinic-front.webp"),
-              logo: absoluteUrl("/favicon.ico"),
-              telephone: clinic.phoneHref.replace("tel:", ""),
-              email: clinic.email,
-              address: {
-                "@type": "PostalAddress",
-                streetAddress:
-                  "B1, First Floor, Eastern Enclave, MLA Layout Main Road, Kalena Agrahara",
-                addressLocality: "Bengaluru",
-                addressRegion: "Karnataka",
-                postalCode: "560076",
-                addressCountry: "IN",
-              },
-              openingHoursSpecification: [
+              "@graph": [
                 {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday",
+                  "@type": "WebSite",
+                  "@id": `${SITE_URL}/#website`,
+                  url: `${SITE_URL}/`,
+                  name: clinic.businessName,
+                  alternateName: clinic.name,
+                  inLanguage: "en-IN",
+                  publisher: { "@id": `${SITE_URL}/#clinic` },
+                },
+                {
+                  "@type": "Dentist",
+                  "@id": `${SITE_URL}/#clinic`,
+                  name: clinic.businessName,
+                  alternateName: clinic.name,
+                  description:
+                    "Neighbourhood dental clinic in Kalena Agrahara near Bannerghatta Road, Bengaluru.",
+                  url: SITE_URL,
+                  image: absoluteUrl("/images/clinic-front.webp"),
+                  logo: absoluteUrl("/favicon.ico"),
+                  telephone: clinic.phoneHref.replace("tel:", ""),
+                  email: clinic.email,
+                  currenciesAccepted: "INR",
+                  address: {
+                    "@type": "PostalAddress",
+                    streetAddress:
+                      "B1, First Floor, Eastern Enclave, MLA Layout Main Road, Kalena Agrahara",
+                    addressLocality: "Bengaluru",
+                    addressRegion: "Karnataka",
+                    postalCode: "560076",
+                    addressCountry: "IN",
+                  },
+                  contactPoint: {
+                    "@type": "ContactPoint",
+                    contactType: "appointments",
+                    telephone: clinic.phoneHref.replace("tel:", ""),
+                    email: clinic.email,
+                    availableLanguage: "English",
+                  },
+                  openingHoursSpecification: [
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      dayOfWeek: [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                        "Saturday",
+                      ],
+                      opens: "10:30",
+                      closes: "21:00",
+                    },
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      dayOfWeek: "Sunday",
+                      opens: "10:30",
+                      closes: "15:30",
+                    },
                   ],
-                  opens: "10:30",
-                  closes: "21:00",
-                },
-                {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: "Sunday",
-                  opens: "10:30",
-                  closes: "15:30",
+                  sameAs: [clinic.instagram, clinic.mapUrl],
+                  hasMap: clinic.mapUrl,
+                  areaServed: ["Kalena Agrahara", "Bannerghatta Road", "South Bengaluru"],
+                  hasOfferCatalog: {
+                    "@type": "OfferCatalog",
+                    name: "Dental treatments",
+                    itemListElement: serviceNav.map((service) => ({
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "Service",
+                        name: service.title,
+                        url: absoluteUrl(`/services/${service.slug}`),
+                        provider: { "@id": `${SITE_URL}/#clinic` },
+                      },
+                    })),
+                  },
                 },
               ],
-              sameAs: [clinic.instagram],
-              hasMap: clinic.mapUrl,
-              areaServed: [
-                "Kalena Agrahara",
-                "Bannerghatta Road",
-                "South Bengaluru",
-              ],
-            }),
+            }).replace(/</g, "\\u003c"),
           }}
         />
       </head>

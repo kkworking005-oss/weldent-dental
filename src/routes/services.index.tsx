@@ -3,7 +3,7 @@ import { PageHero } from "@/components/PageHero";
 import { ServiceCard } from "@/components/cards";
 import { Reveal } from "@/components/motion";
 import { services } from "@/lib/site";
-import { canonicalLinks } from "@/lib/seo";
+import { absoluteUrl, canonicalLinks } from "@/lib/seo";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
@@ -28,9 +28,26 @@ export const Route = createFileRoute("/services/")({
 
 function ServicesPage() {
   const categories = [...new Set(services.map((s) => s.category))];
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Dental treatments at Weldent Dental",
+    itemListElement: services.map((service, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: service.title,
+      url: absoluteUrl(`/services/${service.slug}`),
+    })),
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
       <PageHero
         eyebrow="Treatments"
         title="Dental treatments in Kalena Agrahara, Bengaluru"

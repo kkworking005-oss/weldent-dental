@@ -2,6 +2,7 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
+import { posts } from "./lib/site";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -46,6 +47,7 @@ type Booking = {
 };
 
 const SITE_ORIGIN = "https://weldentdental.com";
+const INDEXNOW_KEY = "24a6e7049e8748119c5540de4e1748d7";
 const maximumBookingBodyLength = 16_384;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -218,11 +220,31 @@ function seoResource(request: Request) {
   const isPreview = url.hostname.endsWith(".workers.dev");
 
   if (url.pathname === "/robots.txt") {
-    const rules = isPreview ? "User-agent: *\nDisallow: /" : "User-agent: *\nAllow: /";
-    return new Response(`${rules}\n\nSitemap: ${url.origin}/sitemap.xml\n`, {
+    const rules = isPreview
+      ? "User-agent: *\nDisallow: /"
+      : [
+          "User-agent: *",
+          "Allow: /",
+          "",
+          "User-agent: OAI-SearchBot",
+          "Allow: /",
+          "",
+          "User-agent: Bingbot",
+          "Allow: /",
+        ].join("\n");
+    return new Response(`${rules}\n\nSitemap: ${SITE_ORIGIN}/sitemap.xml\n`, {
       headers: {
         "content-type": "text/plain; charset=utf-8",
         "cache-control": "public, max-age=3600",
+      },
+    });
+  }
+
+  if (!isPreview && url.pathname === `/${INDEXNOW_KEY}.txt`) {
+    return new Response(`${INDEXNOW_KEY}\n`, {
+      headers: {
+        "content-type": "text/plain; charset=utf-8",
+        "cache-control": "public, max-age=86400",
       },
     });
   }
@@ -242,7 +264,49 @@ function seoResource(request: Request) {
     );
   }
 
+  if (url.pathname === "/feed.xml") {
+    const items = posts
+      .map(
+        (post) => `  <item>
+    <title>${escapeXml(post.title)}</title>
+    <link>${SITE_ORIGIN}/blog/${post.slug}</link>
+    <guid isPermaLink="true">${SITE_ORIGIN}/blog/${post.slug}</guid>
+    <description>${escapeXml(post.excerpt)}</description>
+    <pubDate>${new Date(`${post.datePublished}T00:00:00Z`).toUTCString()}</pubDate>
+  </item>`,
+      )
+      .join("\n");
+    return new Response(
+      `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Weldent Dental Journal</title>
+  <link>${SITE_ORIGIN}/blog</link>
+  <description>Dentist-reviewed dental guidance from Weldent Dental in Bengaluru.</description>
+  <language>en-IN</language>
+${items}
+</channel>
+</rss>
+`,
+      {
+        headers: {
+          "content-type": "application/rss+xml; charset=utf-8",
+          "cache-control": "public, max-age=3600",
+        },
+      },
+    );
+  }
+
   return null;
+}
+
+function escapeXml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
 }
 
 function protectPreviewHostname(request: Request, response: Response) {
@@ -296,10 +360,7 @@ export default {
     try {
       const requestUrl = new URL(request.url);
       if (requestUrl.hostname === "www.weldentdental.com") {
-        return Response.redirect(
-          `${SITE_ORIGIN}${requestUrl.pathname}${requestUrl.search}`,
-          301,
-        );
+        return Response.redirect(`${SITE_ORIGIN}${requestUrl.pathname}${requestUrl.search}`, 301);
       }
       if (requestUrl.pathname === "/booking") {
         return Response.redirect(`${SITE_ORIGIN}/book`, 301);

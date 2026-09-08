@@ -60,6 +60,15 @@ function ServiceDetail() {
       areaServed: "Kalena Agrahara, Bengaluru",
       provider: { "@type": "Dentist", "@id": `${SITE_URL}/#clinic` },
     },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: service.faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+      })),
+    },
   ];
 
   return (
@@ -71,9 +80,13 @@ function ServiceDetail() {
         }}
       />
       <nav aria-label="Breadcrumb" className="shell pt-3 text-sm text-muted-foreground">
-        <Link to="/" className="hover:text-primary">Home</Link>
+        <Link to="/" className="hover:text-primary">
+          Home
+        </Link>
         <span aria-hidden="true"> / </span>
-        <Link to="/services" className="hover:text-primary">Treatments</Link>
+        <Link to="/services" className="hover:text-primary">
+          Treatments
+        </Link>
         <span aria-hidden="true"> / </span>
         <span aria-current="page">{service.title}</span>
       </nav>
