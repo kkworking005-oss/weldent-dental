@@ -552,6 +552,12 @@ export const posts = [
     serviceSlug: "braces",
     excerpt:
       "A practical guide to assessment, treatment planning, daily care and the questions to ask before starting braces.",
+    sources: [
+      {
+        label: "American Association of Orthodontists: Braces",
+        url: "https://aaoinfo.org/treatments/braces/",
+      },
+    ],
     body: [
       "Braces move teeth gradually and can be used to address crowding, spacing and some bite problems. The right plan depends on an examination and records such as photographs or X-rays when clinically indicated.",
       "Before treatment begins, ask who will provide the orthodontic care, what type of appliance is proposed, the expected treatment range and what is included in the quoted fee. A personalised assessment matters more than choosing an appliance from photographs alone.",
@@ -571,6 +577,16 @@ export const posts = [
     serviceSlug: "dental-implants",
     excerpt:
       "General guidance on early healing, oral hygiene and when to contact your treating dental team after implant treatment.",
+    sources: [
+      {
+        label: "Guy's and St Thomas' NHS Foundation Trust: After having a dental implant",
+        url: "https://www.guysandstthomas.nhs.uk/health-information/dental-implants/after-having-dental-implant",
+      },
+      {
+        label: "Cambridge University Hospitals: Dental implants in restorative dentistry",
+        url: "https://www.cuh.nhs.uk/patient-information/dental-implants-in-restorative-dentistry/",
+      },
+    ],
     body: [
       "Your treating clinician's written instructions take priority because implant procedures vary. Some swelling, bruising or discomfort can occur during early healing, but the pattern differs from person to person.",
       "Use any prescribed or recommended medicines only as directed by your treating clinician. Do not add or change medication based on general online advice.",
@@ -590,6 +606,12 @@ export const posts = [
     serviceSlug: "gum-therapy",
     excerpt:
       "Bleeding while brushing can be a sign of gum inflammation and deserves attention when it persists or returns.",
+    sources: [
+      {
+        label: "NHS: Gum disease",
+        url: "https://www.nhs.uk/conditions/gum-disease/",
+      },
+    ],
     body: [
       "Gums that bleed during brushing are often inflamed, commonly because plaque has collected around the gumline. Redness, swelling, tenderness or persistent bad breath may occur at the same time.",
       "Bleeding can also have other causes, so a website cannot identify the reason in an individual case. Persistent, unexplained or heavy bleeding should be assessed rather than self-diagnosed.",
@@ -609,6 +631,12 @@ export const posts = [
     serviceSlug: "pediatric-dentistry",
     excerpt:
       "Simple ways to make a child's first dental appointment calm, familiar and focused on prevention.",
+    sources: [
+      {
+        label: "American Academy of Pediatric Dentistry: Parent FAQ",
+        url: "https://www.aapd.org/resources/parent/faq/",
+      },
+    ],
     body: [
       "Early dental visits help parents receive guidance on cleaning, diet and tooth development before a problem becomes painful. Professional recommendations commonly support a first visit by the first birthday.",
       "Use simple, neutral language at home. You can say the dentist will count the teeth and help keep them clean. Avoid promising that nothing will happen, because the visit depends on what the clinician finds.",

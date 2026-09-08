@@ -12,8 +12,7 @@ export const clinic = {
   email: "sheetal@weldentdental.com",
   emailSecondary: "sheetalkumarg1@gmail.com",
   googleReview: "https://g.page/r/CQ1-6xxnOmpzEBM/review",
-  instagram:
-    "https://www.instagram.com/weldent_dentalclinic?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==",
+  instagram: "https://www.instagram.com/weldent_dentalclinic/",
   mapEmbed:
     "https://www.google.com/maps?q=Weldent%20Multispeciality%20Dental%20Clinic%2C%20B1%20First%20Floor%2C%20Eastern%20Enclave%2C%20MLA%20Layout%20Main%20Road%2C%20Kalena%20Agrahara%2C%20Bengaluru%20560076&output=embed",
   mapUrl: "https://maps.app.goo.gl/iiuNEunvqffEoXsb9?g_st=ac",

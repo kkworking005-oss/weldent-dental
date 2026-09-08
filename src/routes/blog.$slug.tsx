@@ -104,6 +104,23 @@ function BlogPost() {
           ))}
         </div>
       </div>
+      <div className="mt-6 rounded-3xl glass-quiet p-5">
+        <h2 className="text-xl">Sources reviewed</h2>
+        <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+          {post.sources.map((source) => (
+            <li key={source.url}>
+              <a
+                href={source.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                {source.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
       <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
         This article provides general information and does not replace a dental examination or
         personalised treatment advice.
