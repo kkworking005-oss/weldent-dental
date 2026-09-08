@@ -34,7 +34,7 @@ export const Route = createFileRoute("/doctors/$slug")({
 function DoctorDetail() {
   const { doctor } = Route.useLoaderData() as { doctor: Doctor };
   const booking = useBooking();
-  const treatments = services.filter((s) => doctor.treatments.includes(s.slug));
+  const treatments = services.filter((service) => service.doctors.includes(doctor.slug));
   const pageUrl = absoluteUrl(`/doctors/${doctor.slug}`);
   const structuredData = [
     {
@@ -69,9 +69,13 @@ function DoctorDetail() {
         }}
       />
       <nav aria-label="Breadcrumb" className="shell pt-3 text-sm text-muted-foreground">
-        <Link to="/" className="hover:text-primary">Home</Link>
+        <Link to="/" className="hover:text-primary">
+          Home
+        </Link>
         <span aria-hidden="true"> / </span>
-        <Link to="/doctors" className="hover:text-primary">Doctors</Link>
+        <Link to="/doctors" className="hover:text-primary">
+          Doctors
+        </Link>
         <span aria-hidden="true"> / </span>
         <span aria-current="page">{doctor.name}</span>
       </nav>

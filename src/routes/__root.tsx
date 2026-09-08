@@ -192,6 +192,11 @@ function RootShell({ children }: { children: ReactNode }) {
                     postalCode: "560076",
                     addressCountry: "IN",
                   },
+                  geo: {
+                    "@type": "GeoCoordinates",
+                    latitude: 12.865192,
+                    longitude: 77.5920558,
+                  },
                   contactPoint: {
                     "@type": "ContactPoint",
                     contactType: "appointments",
@@ -222,7 +227,11 @@ function RootShell({ children }: { children: ReactNode }) {
                   ],
                   sameAs: [clinic.instagram, clinic.mapUrl],
                   hasMap: clinic.mapUrl,
-                  areaServed: ["Kalena Agrahara", "Bannerghatta Road", "South Bengaluru"],
+                  areaServed: [
+                    { "@type": "Place", name: "Kalena Agrahara" },
+                    { "@type": "Place", name: "Bannerghatta Road" },
+                    { "@type": "City", name: "Bengaluru" },
+                  ],
                   hasOfferCatalog: {
                     "@type": "OfferCatalog",
                     name: "Dental treatments",

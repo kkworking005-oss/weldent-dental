@@ -16,6 +16,7 @@ export const stats = [
 
 export type Service = {
   slug: string;
+  dateModified: string;
   title: string;
   category: string;
   short: string;
@@ -24,12 +25,17 @@ export type Service = {
   steps: string[];
   aftercare: string[];
   faqs: { q: string; a: string }[];
+  guidance?: { title: string; body: string }[];
+  sources?: { label: string; url: string }[];
   doctors: string[];
 };
+
+const serviceContentDate = "2026-09-08";
 
 export const services: Service[] = [
   {
     slug: "preventive-care",
+    dateModified: serviceContentDate,
     title: "Preventive Dental Care & Teeth Cleaning",
     category: "Preventive & General Care",
     short:
@@ -45,22 +51,47 @@ export const services: Service[] = [
     aftercare: [
       "Brush twice daily with fluoride toothpaste",
       "Floss or use interdental brushes daily",
-      "Six-monthly check-ups and cleaning",
+      "Follow the recall interval advised after your examination",
     ],
     faqs: [
       {
         q: "How often should I get a cleaning?",
-        a: "Every six months for most people; every three months during active gum therapy.",
+        a: "The right interval depends on your gum health, plaque and calculus build-up, medical history and home care. Your dentist will recommend a personalised recall interval after examining you.",
       },
       {
         q: "Are fillings painful?",
         a: "Comfort varies by case. Local anaesthesia may be used when a filling would otherwise be uncomfortable.",
       },
     ],
+    guidance: [
+      {
+        title: "Scaling and polishing are different steps",
+        body: "Scaling removes plaque and hardened deposits from tooth surfaces and around the gumline. Polishing smooths selected surfaces and removes some external staining after deposits have been cleared.",
+      },
+      {
+        title: "Bleeding gums deserve an assessment",
+        body: "Repeated bleeding while brushing can be a sign of gum inflammation. The examination determines whether routine cleaning, deeper periodontal care or another approach is appropriate.",
+      },
+      {
+        title: "Cleaning frequency is individual",
+        body: "There is no single schedule for everyone. The recommended interval depends on current gum health, risk factors, home cleaning and how quickly deposits return.",
+      },
+    ],
+    sources: [
+      {
+        label: "American Dental Association: Scaling and root planing",
+        url: "https://www.mouthhealthy.org/all-topics-a-z/scaling-and-root-planing",
+      },
+      {
+        label: "NHS: Dental check-ups",
+        url: "https://www.nhs.uk/live-well/healthy-teeth-and-gums/dental-check-ups/",
+      },
+    ],
     doctors: ["dr-sheetal-kumar-g"],
   },
   {
     slug: "root-canal",
+    dateModified: serviceContentDate,
     title: "Root Canal Treatment (RCT) with Crowns",
     category: "Restorative & Cosmetic",
     short:
@@ -84,10 +115,35 @@ export const services: Service[] = [
         a: "Local anaesthesia is used to manage discomfort. Your dentist will assess the tooth and explain what to expect for your case.",
       },
     ],
+    guidance: [
+      {
+        title: "When root canal treatment may be considered",
+        body: "Persistent toothache, pain when biting, sensitivity, swelling, deep decay, a crack or previous trauma can prompt an assessment. Similar symptoms can have different causes, so diagnosis comes before treatment.",
+      },
+      {
+        title: "Examination and X-rays guide the plan",
+        body: "The dentist examines the tooth and surrounding tissues and may take an X-ray to assess the roots and supporting bone. The number of visits depends on the tooth, infection and treatment complexity.",
+      },
+      {
+        title: "Restoring the tooth afterwards",
+        body: "After the canals are cleaned, shaped and sealed, the tooth needs a durable final restoration. A crown may be recommended when the remaining tooth is weakened, especially for a heavily loaded back tooth.",
+      },
+      {
+        title: "Alternatives and warning signs",
+        body: "If the tooth cannot be predictably restored, extraction and replacement options may be discussed. Contact the clinic promptly if swelling, fever, difficulty swallowing or worsening pain develops.",
+      },
+    ],
+    sources: [
+      {
+        label: "NHS: Root canal treatment",
+        url: "https://www.nhs.uk/tests-and-treatments/root-canal-treatment/",
+      },
+    ],
     doctors: ["dr-sheetal-kumar-g"],
   },
   {
     slug: "crown-bridge",
+    dateModified: serviceContentDate,
     title: "Crown & Bridge",
     category: "Restorative & Cosmetic",
     short:
@@ -115,6 +171,7 @@ export const services: Service[] = [
   },
   {
     slug: "smile-correction",
+    dateModified: serviceContentDate,
     title: "Smile Correction",
     category: "Restorative & Cosmetic",
     short:
@@ -142,6 +199,7 @@ export const services: Service[] = [
   },
   {
     slug: "teeth-whitening",
+    dateModified: serviceContentDate,
     title: "Teeth Whitening",
     category: "Restorative & Cosmetic",
     short:
@@ -169,6 +227,7 @@ export const services: Service[] = [
   },
   {
     slug: "dentures",
+    dateModified: serviceContentDate,
     title: "Dentures (Replacement of Missing Teeth)",
     category: "Restorative & Cosmetic",
     short:
@@ -196,6 +255,7 @@ export const services: Service[] = [
   },
   {
     slug: "dental-implants",
+    dateModified: serviceContentDate,
     title: "Dental Implants",
     category: "Restorative & Cosmetic",
     short:
@@ -219,10 +279,39 @@ export const services: Service[] = [
         a: "Placement is generally performed with local anaesthesia. Recovery varies, and the clinician will explain expected discomfort and aftercare.",
       },
     ],
-    doctors: ["dr-sheetal-kumar-g"],
+    guidance: [
+      {
+        title: "Suitability is assessed first",
+        body: "Implant planning considers the missing tooth or teeth, gum health, available bone, bite, medical history, medicines and smoking. X-rays and, when indicated, additional imaging help the treating clinician plan safely.",
+      },
+      {
+        title: "Treatment is completed in stages",
+        body: "An implant supports a crown, bridge or denture. Placement, healing and fitting the final restoration happen over separate stages; some patients may also need preparatory care such as gum treatment or bone grafting.",
+      },
+      {
+        title: "Other replacement options remain valid",
+        body: "A conventional bridge or removable denture may be appropriate depending on the neighbouring teeth, bone, health, priorities and budget. The consultation should compare reasonable options, benefits, limitations and costs.",
+      },
+      {
+        title: "Aftercare protects the result",
+        body: "Follow the treating clinician's written instructions, keep the area clean as demonstrated and attend reviews. Contact the clinic if bleeding does not settle or pain, swelling, fever or discharge is worsening.",
+      },
+    ],
+    sources: [
+      {
+        label: "Cambridge University Hospitals: Dental implants in restorative dentistry",
+        url: "https://www.cuh.nhs.uk/patient-information/dental-implants-in-restorative-dentistry/",
+      },
+      {
+        label: "Guy's and St Thomas': Dental implants overview",
+        url: "https://www.guysandstthomas.nhs.uk/health-information/dental-implants",
+      },
+    ],
+    doctors: [],
   },
   {
     slug: "braces",
+    dateModified: serviceContentDate,
     title: "Braces (Teeth Alignment)",
     category: "Orthodontics & Surgery",
     short:
@@ -247,13 +336,38 @@ export const services: Service[] = [
       },
       {
         q: "What age is best?",
-        a: "Any age works, but we typically evaluate children around 7–9 years to plan interceptive care.",
+        a: "Orthodontic treatment can be considered for children, teenagers and adults. The right timing depends on dental development, gum health, the bite and the treatment goal.",
       },
     ],
-    doctors: ["dr-sheetal-kumar-g"],
+    guidance: [
+      {
+        title: "Assessment comes before choosing an appliance",
+        body: "The clinician checks tooth position, the bite, gum health and oral hygiene. Photographs, X-rays or other records may be advised before deciding whether braces are appropriate and which approach fits the case.",
+      },
+      {
+        title: "The treating clinician must be clear",
+        body: "Before starting, the clinic will confirm who is responsible for the orthodontic diagnosis, treatment plan, adjustments and follow-up. No individual clinician is attributed on this page until that role is verified.",
+      },
+      {
+        title: "Timelines vary",
+        body: "Treatment length and review frequency depend on the bite, tooth movement, appliance and attendance. A personalised plan is more reliable than a fixed estimate given without records.",
+      },
+      {
+        title: "Retention is part of treatment",
+        body: "After active tooth movement, retainers are normally required to help maintain the result. The treating clinician will explain the retainer type, wear schedule and review plan.",
+      },
+    ],
+    sources: [
+      {
+        label: "American Association of Orthodontists: How braces work",
+        url: "https://aaoinfo.org/treatments/braces/",
+      },
+    ],
+    doctors: [],
   },
   {
     slug: "extractions",
+    dateModified: serviceContentDate,
     title: "Extractions",
     category: "Orthodontics & Surgery",
     short:
@@ -281,6 +395,7 @@ export const services: Service[] = [
   },
   {
     slug: "pediatric-dentistry",
+    dateModified: serviceContentDate,
     title: "Pediatric (Children's) Dental Care",
     category: "Specialized Care",
     short:
@@ -300,10 +415,11 @@ export const services: Service[] = [
         a: "By the first birthday, or within six months of the first tooth appearing.",
       },
     ],
-    doctors: ["dr-sheetal-kumar-g"],
+    doctors: [],
   },
   {
     slug: "geriatric-dentistry",
+    dateModified: serviceContentDate,
     title: "Geriatric Dental Care",
     category: "Specialized Care",
     short:
@@ -331,6 +447,7 @@ export const services: Service[] = [
   },
   {
     slug: "gum-therapy",
+    dateModified: serviceContentDate,
     title: "Gum Therapy (Periodontal Treatment)",
     category: "Preventive & General Care",
     short:
@@ -367,7 +484,6 @@ export type Doctor = {
   bio: string[];
   memberships: string[];
   philosophy: string;
-  treatments: string[];
 };
 
 export const doctors: Doctor[] = [
@@ -386,17 +502,6 @@ export const doctors: Doctor[] = [
     memberships: ["Karnataka State Dental Council (KSDC) — Reg No: 59793 A"],
     philosophy:
       "Explain everything clearly, treat gently, and never recommend what a patient doesn't genuinely need.",
-    treatments: [
-      "preventive-care",
-      "root-canal",
-      "crown-bridge",
-      "smile-correction",
-      "teeth-whitening",
-      "dentures",
-      "extractions",
-      "geriatric-dentistry",
-      "gum-therapy",
-    ],
   },
 ];
 
@@ -501,7 +606,6 @@ export const cases = galleryCases.map((c) => ({
   beforeSrcSet: responsiveImageSet(`gallery/${c.id}-before`),
   afterSrcSet: responsiveImageSet(`gallery/${c.id}-after`),
 }));
-
 
 export const testimonials = [
   {

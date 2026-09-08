@@ -2,7 +2,7 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
-import { posts } from "./lib/site";
+import { posts, services } from "./lib/site";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -53,35 +53,42 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 let serverEntryPromise: Promise<ServerEntry> | undefined;
 
-const indexablePaths = [
-  "/",
-  "/about",
-  "/book",
-  "/contact",
-  "/faq",
-  "/gallery",
-  "/testimonials",
-  "/blog",
-  "/blog/braces-treatment-guide",
-  "/blog/implant-aftercare",
-  "/blog/bleeding-gums",
-  "/blog/kids-first-visit",
-  "/doctors",
-  "/doctors/dr-sheetal-kumar-g",
-  "/services",
-  "/services/preventive-care",
-  "/services/root-canal",
-  "/services/crown-bridge",
-  "/services/smile-correction",
-  "/services/teeth-whitening",
-  "/services/dentures",
-  "/services/dental-implants",
-  "/services/braces",
-  "/services/extractions",
-  "/services/pediatric-dentistry",
-  "/services/geriatric-dentistry",
-  "/services/gum-therapy",
+type IndexablePage = { path: string; lastModified: string };
+
+const staticIndexablePages: IndexablePage[] = [
+  { path: "/", lastModified: "2026-09-08" },
+  { path: "/about", lastModified: "2026-09-08" },
+  { path: "/book", lastModified: "2026-09-08" },
+  { path: "/contact", lastModified: "2026-09-08" },
+  { path: "/faq", lastModified: "2026-09-08" },
+  { path: "/gallery", lastModified: "2026-09-08" },
+  { path: "/testimonials", lastModified: "2026-09-08" },
+  { path: "/doctors", lastModified: "2026-09-08" },
+  { path: "/doctors/dr-sheetal-kumar-g", lastModified: "2026-09-08" },
 ];
+
+function latestDate(dates: string[]) {
+  return [...dates].sort().at(-1) ?? "2026-09-08";
+}
+
+function indexablePages(): IndexablePage[] {
+  return [
+    ...staticIndexablePages,
+    {
+      path: "/services",
+      lastModified: latestDate(services.map((service) => service.dateModified)),
+    },
+    ...services.map((service) => ({
+      path: `/services/${service.slug}`,
+      lastModified: service.dateModified,
+    })),
+    { path: "/blog", lastModified: latestDate(posts.map((post) => post.dateModified)) },
+    ...posts.map((post) => ({
+      path: `/blog/${post.slug}`,
+      lastModified: post.dateModified,
+    })),
+  ];
+}
 
 function jsonResponse(body: object, status = 200, headers?: HeadersInit) {
   return new Response(JSON.stringify(body), {
@@ -250,8 +257,11 @@ function seoResource(request: Request) {
   }
 
   if (url.pathname === "/sitemap.xml") {
-    const urls = indexablePaths
-      .map((path) => `  <url><loc>${SITE_ORIGIN}${path}</loc><lastmod>2026-09-08</lastmod></url>`)
+    const urls = indexablePages()
+      .map(
+        ({ path, lastModified }) =>
+          `  <url><loc>${SITE_ORIGIN}${path}</loc><lastmod>${lastModified}</lastmod></url>`,
+      )
       .join("\n");
     return new Response(
       `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,

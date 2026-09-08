@@ -9,6 +9,8 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "deploy": "wrangler deploy",
+    "postdeploy": "npm run seo:submit",
+    "seo:submit": "node scripts/submit-indexnow.mjs",
     "lint": "eslint .",
     "format": "prettier --write ."
   },

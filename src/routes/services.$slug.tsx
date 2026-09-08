@@ -39,7 +39,7 @@ export const Route = createFileRoute("/services/$slug")({
 function ServiceDetail() {
   const { service } = Route.useLoaderData() as { service: Service };
   const booking = useBooking();
-  const team = doctors.filter((d) => d.treatments.includes(service.slug));
+  const team = doctors.filter((doctor) => service.doctors.includes(doctor.slug));
   const pageUrl = absoluteUrl(`/services/${service.slug}`);
   const structuredData = [
     {
@@ -57,7 +57,12 @@ function ServiceDetail() {
       name: service.title,
       description: service.short,
       url: pageUrl,
-      areaServed: "Kalena Agrahara, Bengaluru",
+      dateModified: service.dateModified,
+      areaServed: [
+        { "@type": "Place", name: "Kalena Agrahara" },
+        { "@type": "Place", name: "Bannerghatta Road" },
+        { "@type": "City", name: "Bengaluru" },
+      ],
       provider: { "@type": "Dentist", "@id": `${SITE_URL}/#clinic` },
     },
     {
@@ -151,6 +156,47 @@ function ServiceDetail() {
         </ol>
       </section>
 
+      {service.guidance?.length ? (
+        <section className="shell py-10" aria-labelledby="treatment-guidance">
+          <Reveal>
+            <h2 id="treatment-guidance" className="text-[1.75rem] md:text-[2.6rem]">
+              What to know before treatment
+            </h2>
+          </Reveal>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {service.guidance.map((item, i) => (
+              <Reveal key={item.title} delay={i * 60}>
+                <Panel className="h-full">
+                  <h3 className="text-xl">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+                </Panel>
+              </Reveal>
+            ))}
+          </div>
+          {service.sources?.length ? (
+            <Reveal>
+              <div className="mt-5 rounded-3xl border border-border/70 p-5">
+                <h3 className="font-medium">Reliable patient guidance</h3>
+                <ul className="mt-3 space-y-2 text-sm">
+                  {service.sources.map((source) => (
+                    <li key={source.url}>
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-primary underline decoration-primary/35 underline-offset-4 hover:decoration-primary"
+                      >
+                        {source.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ) : null}
+        </section>
+      ) : null}
+
       <section className="shell py-10">
         <div className="grid gap-5 lg:grid-cols-2">
           <Reveal>
@@ -195,7 +241,20 @@ function ServiceDetail() {
             ))}
           </div>
         </section>
-      ) : null}
+      ) : (
+        <section className="shell py-10">
+          <Reveal>
+            <Panel tone="quiet">
+              <h2 className="text-2xl">Treating clinician</h2>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                The clinic will confirm the appropriately qualified treating clinician after
+                reviewing your case. No individual clinician is attributed to this treatment on the
+                website until their role is verified.
+              </p>
+            </Panel>
+          </Reveal>
+        </section>
+      )}
 
       <section className="shell py-10">
         <Reveal>
