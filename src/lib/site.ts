@@ -10,7 +10,7 @@ export const photos = {
 export const stats = [
   { value: getYearsOfExperience(), suffix: "+", label: "Years of clinical experience" },
   { value: getSmilesTreated(), suffix: "+", label: "Smiles treated" },
-  { value: 4.9, suffix: "★", label: "Average patient rating" },
+  { value: 15, suffix: "", label: "Clinical cases shown" },
   { value: 7, suffix: "", label: "Days open a week" },
 ];
 
@@ -33,7 +33,7 @@ export const services: Service[] = [
     title: "Preventive Dental Care & Teeth Cleaning",
     category: "Preventive & General Care",
     short:
-      "Routine check-ups, professional teeth cleaning, fillings and gum therapy to keep problems away before they start.",
+      "Routine check-ups, professional teeth cleaning, fillings and gum care focused on prevention and early treatment.",
     who: "Everyone — children, adults and seniors looking to maintain a healthy smile.",
     duration: "30–60 min",
     steps: [
@@ -54,7 +54,7 @@ export const services: Service[] = [
       },
       {
         q: "Are fillings painful?",
-        a: "No — we use local anaesthesia so the area is completely numb during the procedure.",
+        a: "Comfort varies by case. Local anaesthesia may be used when a filling would otherwise be uncomfortable.",
       },
     ],
     doctors: ["dr-sheetal-kumar-g"],
@@ -64,24 +64,24 @@ export const services: Service[] = [
     title: "Root Canal Treatment (RCT) with Crowns",
     category: "Restorative & Cosmetic",
     short:
-      "Saves infected or badly damaged teeth with thorough cleaning, sealing and a protective crown — in comfort, not pain.",
+      "Root canal treatment removes infected tissue, cleans and seals the tooth; a crown may be advised depending on the remaining tooth structure.",
     who: "Deep decay, cracked teeth, persistent throbbing pain or trauma to the tooth.",
     duration: "45–90 min · 1–2 visits",
     steps: [
       "RVG digital X-ray and pulp testing",
-      "Painless isolation and access",
-      "Cleaning, shaping and 3D obturation of root canals",
+      "Local anaesthesia, isolation and access",
+      "Cleaning, shaping and sealing of the root canals",
       "Custom crown placement to protect the tooth",
     ],
     aftercare: ["Avoid chewing on that side until crowned", "Mild soreness for 2–3 days is normal"],
     faqs: [
       {
         q: "Is a crown always needed after RCT?",
-        a: "For back (chewing) teeth, yes — it prevents fracture of the treated tooth.",
+        a: "A crown is often recommended for a back tooth after root canal treatment, but the decision depends on how much healthy tooth structure remains.",
       },
       {
         q: "Is root canal painful?",
-        a: "With modern anaesthesia the procedure is comfortable — it relieves the pain you already have.",
+        a: "Local anaesthesia is used to manage discomfort. Your dentist will assess the tooth and explain what to expect for your case.",
       },
     ],
     doctors: ["dr-sheetal-kumar-g"],
@@ -96,7 +96,7 @@ export const services: Service[] = [
     duration: "2 visits · 1–2 weeks",
     steps: [
       "Tooth preparation and shade matching",
-      "Digital impressions and temporary restoration",
+      "Dental impressions and a temporary restoration where needed",
       "Custom ceramic fabrication in the dental lab",
       "Final bonding and bite adjustment",
     ],
@@ -123,7 +123,7 @@ export const services: Service[] = [
     duration: "Planned over 2–6 weeks depending on the plan",
     steps: [
       "Smile analysis and photo documentation",
-      "Digital or mock-up preview of the new look",
+      "Clinical discussion and a mock-up preview where appropriate",
       "Phased restorations, whitening or reshaping",
       "Final polish and follow-up",
     ],
@@ -145,7 +145,7 @@ export const services: Service[] = [
     title: "Teeth Whitening",
     category: "Restorative & Cosmetic",
     short:
-      "Enamel-safe in-clinic whitening (and optional take-home kits) calibrated to your sensitivity level.",
+      "Professionally supervised teeth whitening planned after checking your teeth, gums and sensitivity.",
     who: "Stained or yellowed teeth from coffee, tea, tobacco or natural ageing.",
     duration: "60 min in-clinic session",
     steps: [
@@ -158,7 +158,7 @@ export const services: Service[] = [
     faqs: [
       {
         q: "Does whitening damage enamel?",
-        a: "No — the gels we use are pH-balanced and clinically supervised.",
+        a: "A dental examination helps determine whether whitening is suitable. Temporary sensitivity can occur and will be discussed before treatment.",
       },
       {
         q: "How long will it last?",
@@ -199,7 +199,7 @@ export const services: Service[] = [
     title: "Dental Implants",
     category: "Restorative & Cosmetic",
     short:
-      "Permanent titanium tooth roots with custom crowns — the strongest, most natural way to replace missing teeth.",
+      "A fixed tooth-replacement option using an implant and restoration, subject to clinical and radiographic assessment.",
     who: "Adults with one or more missing teeth, or those tired of loose removable dentures.",
     duration: "Staged over 3–5 months total",
     steps: [
@@ -216,7 +216,7 @@ export const services: Service[] = [
     faqs: [
       {
         q: "Is the implant procedure painful?",
-        a: "Placement is done under local anaesthesia — most patients report less discomfort than an extraction.",
+        a: "Placement is generally performed with local anaesthesia. Recovery varies, and the clinician will explain expected discomfort and aftercare.",
       },
     ],
     doctors: ["dr-sheetal-kumar-g"],
@@ -243,7 +243,7 @@ export const services: Service[] = [
     faqs: [
       {
         q: "Do braces hurt?",
-        a: "Adjustments cause 2–3 days of mild soreness, easily managed with paracetamol.",
+        a: "Temporary soreness can occur after fitting or adjustments. Contact the treating clinician if discomfort is severe or persistent.",
       },
       {
         q: "What age is best?",
@@ -257,13 +257,13 @@ export const services: Service[] = [
     title: "Extractions",
     category: "Orthodontics & Surgery",
     short:
-      "Gentle removal of badly damaged, impacted or wisdom teeth — with laser-assisted options and a clear recovery plan.",
+      "Removal of teeth that cannot be predictably restored, with assessment, local anaesthesia and clear aftercare instructions.",
     who: "Severely decayed, fractured, impacted or wisdom teeth; teeth planned for orthodontics.",
     duration: "20–60 min depending on complexity",
     steps: [
       "X-ray evaluation and diagnosis",
-      "Painless local anaesthesia",
-      "Atraumatic removal; laser-assisted surgery for impactions when needed",
+      "Local anaesthesia and comfort checks",
+      "Removal planned according to the tooth position and case complexity",
       "Post-op instructions, medications and review appointment",
     ],
     aftercare: [
@@ -324,7 +324,7 @@ export const services: Service[] = [
     faqs: [
       {
         q: "Can you treat patients with complex medical conditions?",
-        a: "Yes — we work with your physician to plan care safely and comfortably.",
+        a: "Treatment planning considers your medical history, and coordination with your physician may be advised when needed.",
       },
     ],
     doctors: ["dr-sheetal-kumar-g"],
@@ -334,13 +334,13 @@ export const services: Service[] = [
     title: "Gum Therapy (Periodontal Treatment)",
     category: "Preventive & General Care",
     short:
-      "Ultrasonic cleaning and laser-assisted periodontal therapy that stops bleeding gums and protects the bone supporting your teeth.",
+      "Assessment, professional cleaning and periodontal care for bleeding, swollen or receding gums.",
     who: "Bleeding, swollen, receding gums, persistent bad breath or early-to-moderate periodontitis.",
     duration: "45–60 min per visit",
     steps: [
       "Pocket charting and diagnostic evaluation",
       "Ultrasonic scaling and root planing",
-      "Laser-assisted decontamination where indicated",
+      "Additional periodontal treatment where clinically indicated",
       "Re-evaluation and maintenance programme",
     ],
     aftercare: [
@@ -386,7 +386,17 @@ export const doctors: Doctor[] = [
     memberships: ["Karnataka State Dental Council (KSDC) — Reg No: 59793 A"],
     philosophy:
       "Explain everything clearly, treat gently, and never recommend what a patient doesn't genuinely need.",
-    treatments: services.map((s) => s.slug),
+    treatments: [
+      "preventive-care",
+      "root-canal",
+      "crown-bridge",
+      "smile-correction",
+      "teeth-whitening",
+      "dentures",
+      "extractions",
+      "geriatric-dentistry",
+      "gum-therapy",
+    ],
   },
 ];
 
@@ -533,54 +543,79 @@ export const testimonials = [
 
 export const posts = [
   {
-    slug: "aligners-vs-braces",
-    title: "Aligners or braces? An honest comparison",
+    slug: "braces-treatment-guide",
+    title: "Braces treatment: what to expect before you begin",
     category: "Orthodontics",
-    date: "12 Jun 2026",
+    date: "8 Sep 2026",
+    datePublished: "2026-09-08",
+    dateModified: "2026-09-08",
+    serviceSlug: "braces",
     excerpt:
-      "Both straighten teeth. They differ in discipline, cost and the kind of case they suit — here is how we decide.",
+      "A practical guide to assessment, treatment planning, daily care and the questions to ask before starting braces.",
     body: [
-      "Clear aligners work brilliantly for crowding, spacing and mild bite corrections, provided you actually wear them 20 to 22 hours a day. Fixed braces do not depend on your willpower, which is why we still recommend them for complex rotations and significant bite discrepancies.",
-      "Cost sits closer than most people expect. The bigger differences are lifestyle and review frequency: aligners mean fewer, shorter visits but more responsibility at home.",
-      "At your consultation we scan your teeth and show both plans side by side before you decide anything.",
+      "Braces move teeth gradually and can be used to address crowding, spacing and some bite problems. The right plan depends on an examination and records such as photographs or X-rays when clinically indicated.",
+      "Before treatment begins, ask who will provide the orthodontic care, what type of appliance is proposed, the expected treatment range and what is included in the quoted fee. A personalised assessment matters more than choosing an appliance from photographs alone.",
+      "Appointments are required during treatment so progress can be reviewed and the appliance adjusted. The exact schedule and total duration vary with the complexity of the case and how the teeth respond.",
+      "Cleaning around brackets takes extra care. Use fluoride toothpaste, clean around the gumline and brackets, and follow the treating clinician's advice about floss or interdental brushes.",
+      "Hard or sticky foods can damage brackets and wires. If part of the appliance becomes loose or sharp, contact the treating clinic for advice rather than attempting a permanent repair at home.",
+      "After active treatment, retainers are normally needed to help maintain the new tooth positions. The clinician will explain the appropriate retainer type and wear schedule for your case.",
     ],
   },
   {
     slug: "implant-aftercare",
-    title: "The first 72 hours after a dental implant",
+    title: "Dental implant aftercare: the early healing period",
     category: "Implants",
     date: "28 May 2026",
+    datePublished: "2026-05-28",
+    dateModified: "2026-09-08",
+    serviceSlug: "dental-implants",
     excerpt:
-      "What is normal, what is not, and the four small habits that decide how well an implant integrates.",
+      "General guidance on early healing, oral hygiene and when to contact your treating dental team after implant treatment.",
     body: [
-      "Mild swelling and a metallic taste in the first two days are expected. Throbbing that worsens after day three is not — call us.",
-      "Cold compress in twenty-minute cycles for the first day, soft food for a week, no smoking, and gentle rinsing rather than vigorous swishing.",
-      "Implants fail from infection and load, not from bad luck. Keeping the site clean during healing is the single highest-value thing you can do.",
+      "Your treating clinician's written instructions take priority because implant procedures vary. Some swelling, bruising or discomfort can occur during early healing, but the pattern differs from person to person.",
+      "Use any prescribed or recommended medicines only as directed by your treating clinician. Do not add or change medication based on general online advice.",
+      "Keep the area clean using the method demonstrated by the clinic. Avoid disturbing the surgical site, and follow the specific guidance you receive about brushing, rinsing and food.",
+      "Smoking can interfere with healing and is a recognised risk factor for implant complications. Tell your clinician about tobacco use so it can be considered in treatment planning and aftercare.",
+      "Contact the treating clinic if bleeding does not settle, swelling or pain is worsening rather than improving, or you develop fever, an unpleasant discharge or another symptom that concerns you.",
+      "Long-term implant care includes careful daily cleaning and regular professional review. An implant restoration can still develop problems in the surrounding gums and supporting tissues if plaque is not controlled.",
     ],
   },
   {
     slug: "bleeding-gums",
-    title: "Bleeding gums are not normal",
+    title: "Bleeding gums: possible causes and when to see a dentist",
     category: "Gum Care",
     date: "9 May 2026",
+    datePublished: "2026-05-09",
+    dateModified: "2026-09-08",
+    serviceSlug: "gum-therapy",
     excerpt:
-      "If your sink turns pink when you brush, your gums are telling you something worth listening to.",
+      "Bleeding while brushing can be a sign of gum inflammation and deserves attention when it persists or returns.",
     body: [
-      "Healthy gums do not bleed when brushed. Bleeding indicates inflammation, usually from plaque and calculus below the gumline.",
-      "Caught early, this reverses with a professional clean and better technique. Left alone for years, it becomes periodontitis and bone loss — the leading reason adults lose teeth.",
-      "A pocket charting appointment takes twenty minutes and tells us exactly where you stand.",
+      "Gums that bleed during brushing are often inflamed, commonly because plaque has collected around the gumline. Redness, swelling, tenderness or persistent bad breath may occur at the same time.",
+      "Bleeding can also have other causes, so a website cannot identify the reason in an individual case. Persistent, unexplained or heavy bleeding should be assessed rather than self-diagnosed.",
+      "A dental visit may include an examination of the gums, measurement of gum pockets and X-rays when clinically needed. The findings determine whether routine cleaning, periodontal treatment or another approach is appropriate.",
+      "Continue gentle daily cleaning unless your clinician advises otherwise. Stopping brushing completely can allow more plaque to collect, while aggressive scrubbing may irritate the tissues.",
+      "Seek prompt dental advice if bleeding is accompanied by loose teeth, swelling, pus, severe pain or rapidly worsening symptoms. Mention any medical conditions or medicines that may affect bleeding.",
+      "After treatment, consistent home care and review intervals based on your gum health help reduce the chance of the problem returning.",
     ],
   },
   {
     slug: "kids-first-visit",
     title: "Preparing your child for their first dental visit",
-    category: "Paediatric",
+    category: "Children's Dental Care",
     date: "21 Apr 2026",
-    excerpt: "The words you use at home matter more than anything we do in the chair.",
+    datePublished: "2026-04-21",
+    dateModified: "2026-09-08",
+    serviceSlug: "pediatric-dentistry",
+    excerpt:
+      "Simple ways to make a child's first dental appointment calm, familiar and focused on prevention.",
     body: [
-      "Avoid the words 'hurt', 'needle' and 'brave'. Say we are going to count teeth and take a photograph.",
-      "Book a morning slot, bring a familiar toy, and let your child sit in the chair with nothing happening on the first visit.",
-      "Our paediatric wing runs on tell-show-do: every instrument is introduced before it is used.",
+      "Early dental visits help parents receive guidance on cleaning, diet and tooth development before a problem becomes painful. Professional recommendations commonly support a first visit by the first birthday.",
+      "Use simple, neutral language at home. You can say the dentist will count the teeth and help keep them clean. Avoid promising that nothing will happen, because the visit depends on what the clinician finds.",
+      "Choose a time when your child is usually rested and bring information about medical conditions, medicines, allergies and any dental symptoms.",
+      "A first visit may be mostly an introduction, conversation and gentle examination. The pace depends on the child's age, comfort and clinical needs.",
+      "Parents can ask about brushing with fluoride toothpaste, snacks and drinks, thumb or pacifier habits, injury prevention and how often reviews are appropriate.",
+      "If your child has facial swelling, dental trauma, uncontrolled bleeding or significant pain, call the clinic promptly rather than waiting for a routine first-visit appointment.",
     ],
   },
 ];

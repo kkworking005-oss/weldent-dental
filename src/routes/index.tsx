@@ -11,17 +11,17 @@ import { canonicalLinks } from "@/lib/seo";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Weldent Multispeciality Dental Clinic — Modern Dentistry in Bengaluru" },
+      { title: "Dentist in Kalena Agrahara, Bengaluru | Weldent Dental" },
       {
         name: "description",
         content:
-          "Complete dental care for a healthy smile in Kalena Agrahara, Bengaluru. Preventive care, root canals, crowns, braces, implants and more by Dr. Sheetal Kumar G (BDS).",
+          "Visit Weldent Dental, a dental clinic in Kalena Agrahara near Bannerghatta Road, Bengaluru, for check-ups, teeth cleaning, root canals, crowns and family dental care.",
       },
-      { property: "og:title", content: "Weldent Dental — Complete Dental Care in Bengaluru" },
+      { property: "og:title", content: "Dentist in Kalena Agrahara, Bengaluru | Weldent Dental" },
       {
         property: "og:description",
         content:
-          "Your smile, in expert hands. Complete multispeciality dental care in South Bengaluru.",
+          "Preventive, restorative and specialised dental care near Bannerghatta Road in South Bengaluru.",
       },
     ],
     links: [
@@ -48,14 +48,14 @@ function Home() {
           <div className="md:animate-fade-up">
             <Eyebrow>Weldent Multispeciality Dental Clinic</Eyebrow>
             <h1 className="mt-7 text-[2.6rem] leading-[1] sm:text-[3.3rem] md:text-[5rem]">
-              Dentistry that feels
+              Complete dental care in
               <br />
-              <span className="italic text-primary">quietly</span> effortless.
+              <span className="italic text-primary">Kalena Agrahara, Bengaluru.</span>
             </h1>
             <p className="mt-6 max-w-lg text-[1.02rem] leading-relaxed text-muted-foreground">
-              {clinic.tagline} A calm multispeciality clinic on Bannerghatta Road where Dr. Sheetal
-              Kumar G handles everything from a routine cleaning and fillings to root canals,
-              braces, implants and laser-assisted procedures.
+              Dentistry that feels quietly effortless. {clinic.tagline} Visit our neighbourhood
+              dental clinic near Bannerghatta Road for clear explanations, careful diagnosis and
+              treatment options tailored to your needs.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button size="lg" onClick={booking.open}>
@@ -67,7 +67,7 @@ function Home() {
             </div>
             <div className="mt-10 flex flex-wrap gap-2">
               {[
-                { icon: ShieldCheck, label: "Sterilised, single-use instruments" },
+                { icon: ShieldCheck, label: "Documented sterilisation protocols" },
                 { icon: Sparkles, label: "Digital X-rays" },
                 { icon: Clock, label: "Open 7 days" },
               ].map((b) => (
@@ -97,7 +97,7 @@ function Home() {
               </div>
               <div className="absolute -bottom-6 -left-4 hidden rounded-3xl glass px-6 py-5 shadow-lift sm:block">
                 <p className="font-display text-4xl text-primary">
-                  <Counter to={500} suffix="+" />
+                  <Counter to={stats[1]!.value} suffix="+" />
                 </p>
                 <p className="mt-1 text-xs tracking-wide text-muted-foreground">
                   smiles treated with care
@@ -128,7 +128,7 @@ function Home() {
           <SectionHeading
             eyebrow="Treatments"
             title="Care planned in detail, delivered gently"
-            copy="Everything from a routine cleaning to implants, crowns and braces — planned and carried out by Dr. Sheetal Kumar G himself."
+            copy="Explore preventive, restorative and specialised dental care. Your options, expected visits and costs are explained before treatment begins."
             action={
               <ButtonLink to="/services" variant="glass">
                 All services
@@ -198,7 +198,7 @@ function Home() {
           <SectionHeading
             eyebrow="Results"
             title="Before and after, unretouched"
-            copy="Drag the handle to see the change. Every case treated in-house."
+            copy="Drag the handle to compare treatment photographs shared by Weldent Dental. Individual results vary."
             action={
               <ButtonLink to="/gallery" variant="glass">
                 Full gallery

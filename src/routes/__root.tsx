@@ -15,6 +15,7 @@ import { Footer } from "@/components/Footer";
 import { MobileActionBar, WhatsAppButton } from "@/components/FloatingActions";
 import { BookingProvider } from "@/components/BookingContext";
 import { clinic } from "@/lib/site-core";
+import { absoluteUrl, SITE_URL } from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -78,19 +79,22 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { title: "Weldent Dental Clinic — Bengaluru" },
+      { title: "Dentist in Kalena Agrahara, Bengaluru | Weldent Dental" },
       {
         name: "description",
         content:
-          "Multispeciality dental care in Kalena Agrahara, Bannerghatta Road, Bengaluru. Implants, aligners, crowns and gentle family dentistry.",
+          "Dental clinic in Kalena Agrahara near Bannerghatta Road, Bengaluru. Book preventive, restorative and specialised dental care with Weldent Dental.",
       },
-      { name: "author", content: "Weldent Dental Clinic" },
+      { name: "author", content: clinic.businessName },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
       { name: "theme-color", content: "#194c75" },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Weldent Dental Clinic" },
-      { property: "og:image", content: "/images/clinic-front.webp" },
+      { property: "og:site_name", content: clinic.businessName },
+      { property: "og:locale", content: "en_IN" },
+      { property: "og:image", content: absoluteUrl("/images/clinic-front.webp") },
       { property: "og:image:alt", content: "Weldent Dental Clinic in Kalena Agrahara, Bengaluru" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: absoluteUrl("/images/clinic-front.webp") },
     ],
     links: [
       {
@@ -122,7 +126,7 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <head>
         <HeadContent />
         <script
@@ -131,23 +135,51 @@ function RootShell({ children }: { children: ReactNode }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Dentist",
-              "@id": "/#clinic",
-              name: clinic.name,
-              url: "/",
-              image: "/images/clinic-front.webp",
-              telephone: clinic.phone,
+              "@id": `${SITE_URL}/#clinic`,
+              name: clinic.businessName,
+              alternateName: clinic.name,
+              url: SITE_URL,
+              image: absoluteUrl("/images/clinic-front.webp"),
+              logo: absoluteUrl("/favicon.ico"),
+              telephone: clinic.phoneHref.replace("tel:", ""),
               email: clinic.email,
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "B1, First Floor, Eastern Enclave, MLA Layout Main Road",
-                addressLocality: "Kalena Agrahara, Bengaluru",
+                streetAddress:
+                  "B1, First Floor, Eastern Enclave, MLA Layout Main Road, Kalena Agrahara",
+                addressLocality: "Bengaluru",
                 addressRegion: "Karnataka",
                 postalCode: "560076",
                 addressCountry: "IN",
               },
+              openingHoursSpecification: [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                  ],
+                  opens: "10:30",
+                  closes: "21:00",
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: "Sunday",
+                  opens: "10:30",
+                  closes: "15:30",
+                },
+              ],
+              sameAs: [clinic.instagram],
               hasMap: clinic.mapUrl,
-              areaServed: "South Bengaluru",
-              priceRange: "₹₹",
+              areaServed: [
+                "Kalena Agrahara",
+                "Bannerghatta Road",
+                "South Bengaluru",
+              ],
             }),
           }}
         />

@@ -14,7 +14,7 @@ export function Footer() {
                 Weldent<span className="text-accent">.</span>
               </p>
               <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground md:mt-3">
-                {clinic.tagline} A calm, digital-first dental practice in South Bengaluru.
+                {clinic.tagline} A neighbourhood dental clinic in Kalena Agrahara, South Bengaluru.
               </p>
               <div className="mt-4 flex gap-2 md:mt-5">
                 <a

@@ -11,12 +11,12 @@ export const Route = createFileRoute("/blog/")({
       {
         name: "description",
         content:
-          "Practical dental reading from Weldent Dental Clinic: aligners vs braces, implant aftercare, gum health and children's first visits.",
+          "Dentist-reviewed guidance from Weldent Dental in Kalena Agrahara on braces, implant aftercare, bleeding gums and children's first dental visits.",
       },
       { property: "og:title", content: "Dental Journal | Weldent Dental Clinic" },
       {
         property: "og:description",
-        content: "Straight answers from practising dentists in Bengaluru.",
+        content: "Practical dental guidance reviewed by Dr. Sheetal Kumar G, BDS.",
       },
     ],
     links: canonicalLinks("/blog"),
@@ -30,7 +30,7 @@ function BlogPage() {
       <PageHero
         eyebrow="Journal"
         title="Straight answers, no scare tactics."
-        copy="Short pieces written by the dentists who treat these cases every week."
+        copy="Practical dental guidance reviewed by Dr. Sheetal Kumar G, BDS. General information cannot replace an in-person examination."
       />
       <div className="shell grid gap-4 pb-8 md:pb-10 md:grid-cols-2">
         {posts.map((p, i) => (

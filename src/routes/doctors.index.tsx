@@ -31,8 +31,8 @@ function DoctorsPage() {
     <>
       <PageHero
         eyebrow="Your dentist"
-        title="One dentist, start to finish."
-        copy="Your plan is written and carried out by Dr. Sheetal Kumar G himself — no handovers, no guesswork."
+        title="Meet your dentist in Kalena Agrahara"
+        copy="Meet Dr. Sheetal Kumar G, BDS and KSDC-registered Principal Dental Surgeon at Weldent Dental."
       />
       <div className="shell grid max-w-xl gap-4 pb-8 md:gap-5 md:pb-10">
         {doctors.map((d, i) => (

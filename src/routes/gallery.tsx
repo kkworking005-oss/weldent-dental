@@ -14,10 +14,10 @@ export const Route = createFileRoute("/gallery")({
       {
         name: "description",
         content:
-          "Real before-and-after dental cases from Weldent Dental Clinic, Bengaluru — veneers, aligners, implants and gum therapy.",
+          "Real before-and-after dental cases from Weldent Dental Clinic in Kalena Agrahara, Bengaluru, including cleaning, fillings, bonding, crowns, bridges, dentures and extractions.",
       },
       { property: "og:title", content: "Before & After Gallery | Weldent Dental Clinic" },
-      { property: "og:description", content: "Unretouched results from cases treated in-house." },
+      { property: "og:description", content: "Treatment photographs shared by Weldent Dental. Individual results vary." },
     ],
     links: canonicalLinks("/gallery"),
   }),

@@ -45,6 +45,7 @@ type Booking = {
   notes: string | null;
 };
 
+const SITE_ORIGIN = "https://weldentdental.com";
 const maximumBookingBodyLength = 16_384;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -59,7 +60,7 @@ const indexablePaths = [
   "/gallery",
   "/testimonials",
   "/blog",
-  "/blog/aligners-vs-braces",
+  "/blog/braces-treatment-guide",
   "/blog/implant-aftercare",
   "/blog/bleeding-gums",
   "/blog/kids-first-visit",
@@ -228,7 +229,7 @@ function seoResource(request: Request) {
 
   if (url.pathname === "/sitemap.xml") {
     const urls = indexablePaths
-      .map((path) => `  <url><loc>${url.origin}${path}</loc></url>`)
+      .map((path) => `  <url><loc>${SITE_ORIGIN}${path}</loc><lastmod>2026-09-08</lastmod></url>`)
       .join("\n");
     return new Response(
       `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
@@ -293,7 +294,20 @@ function isH3SwallowedErrorBody(body: string): boolean {
 export default {
   async fetch(request: Request, directEnv?: CloudflareEnv, ctx?: unknown) {
     try {
-      if (new URL(request.url).pathname === "/api/book") {
+      const requestUrl = new URL(request.url);
+      if (requestUrl.hostname === "www.weldentdental.com") {
+        return Response.redirect(
+          `${SITE_ORIGIN}${requestUrl.pathname}${requestUrl.search}`,
+          301,
+        );
+      }
+      if (requestUrl.pathname === "/booking") {
+        return Response.redirect(`${SITE_ORIGIN}/book`, 301);
+      }
+      if (requestUrl.pathname === "/blog/aligners-vs-braces") {
+        return Response.redirect(`${SITE_ORIGIN}/blog/braces-treatment-guide`, 301);
+      }
+      if (requestUrl.pathname === "/api/book") {
         const env = getCloudflareEnv(request, directEnv);
         if (!env?.weldent) {
           console.error("The weldent D1 binding is unavailable");

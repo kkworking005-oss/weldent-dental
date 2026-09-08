@@ -12,10 +12,10 @@ export const Route = createFileRoute("/testimonials")({
       {
         name: "description",
         content:
-          "Read what patients say about implants, aligners, root canals and children's dentistry at Weldent Dental Clinic, Bengaluru.",
+          "Read patient feedback about explanations, comfort, hygiene and dental treatment at Weldent Dental Clinic in Kalena Agrahara, Bengaluru.",
       },
       { property: "og:title", content: "Patient Reviews | Weldent Dental Clinic" },
-      { property: "og:description", content: "Rated 4.9 by more than 9,200 patients." },
+      { property: "og:description", content: "Patient experiences shared with Weldent Dental Clinic." },
     ],
     links: canonicalLinks("/testimonials"),
   }),
@@ -27,7 +27,7 @@ function TestimonialsPage() {
     <>
       <PageHero
         eyebrow="Testimonials"
-        title="Rated 4.9 by the people who sat in the chair."
+        title="What patients say about Weldent Dental"
         copy="Unedited words from patients treated at Kalena Agrahara."
       />
       <div className="shell grid gap-4 pb-8 md:pb-10 md:grid-cols-2 lg:grid-cols-3">

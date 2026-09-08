@@ -1,4 +1,4 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Check, Clock, Users } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { Button, ButtonLink, Panel } from "@/components/kit";
@@ -7,7 +7,7 @@ import { DoctorCard } from "@/components/cards";
 import { useBooking } from "@/components/BookingContext";
 import { ServiceImage } from "@/components/ServiceImage";
 import { doctors, services, type Service } from "@/lib/site";
-import { canonicalLinks } from "@/lib/seo";
+import { absoluteUrl, canonicalLinks, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -22,8 +22,11 @@ export const Route = createFileRoute("/services/$slug")({
     const s = loaderData.service;
     return {
       meta: [
-        { title: `${s.title} in Bengaluru | Weldent Dental` },
-        { name: "description", content: s.short },
+        { title: `${s.title} in Kalena Agrahara, Bengaluru | Weldent Dental` },
+        {
+          name: "description",
+          content: `${s.short} Consultation available at Weldent Dental in Kalena Agrahara, Bengaluru.`,
+        },
         { property: "og:title", content: `${s.title} | Weldent Dental` },
         { property: "og:description", content: s.short },
       ],
@@ -36,10 +39,44 @@ export const Route = createFileRoute("/services/$slug")({
 function ServiceDetail() {
   const { service } = Route.useLoaderData() as { service: Service };
   const booking = useBooking();
-  const team = doctors.filter((d) => service.doctors.includes(d.slug));
+  const team = doctors.filter((d) => d.treatments.includes(service.slug));
+  const pageUrl = absoluteUrl(`/services/${service.slug}`);
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Treatments", item: absoluteUrl("/services") },
+        { "@type": "ListItem", position: 3, name: service.title, item: pageUrl },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: service.title,
+      description: service.short,
+      url: pageUrl,
+      areaServed: "Kalena Agrahara, Bengaluru",
+      provider: { "@type": "Dentist", "@id": `${SITE_URL}/#clinic` },
+    },
+  ];
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
+      <nav aria-label="Breadcrumb" className="shell pt-3 text-sm text-muted-foreground">
+        <Link to="/" className="hover:text-primary">Home</Link>
+        <span aria-hidden="true"> / </span>
+        <Link to="/services" className="hover:text-primary">Treatments</Link>
+        <span aria-hidden="true"> / </span>
+        <span aria-current="page">{service.title}</span>
+      </nav>
       <PageHero eyebrow={service.category} title={service.title} copy={service.short}>
         <div className="flex flex-wrap gap-3">
           <Button size="lg" onClick={booking.open}>
@@ -135,7 +172,7 @@ function ServiceDetail() {
       {team.length ? (
         <section className="shell py-10">
           <Reveal>
-            <h2 className="text-[1.75rem] md:text-[2.6rem]">Who will treat you</h2>
+            <h2 className="text-[1.75rem] md:text-[2.6rem]">Clinician profile</h2>
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {team.map((d, i) => (

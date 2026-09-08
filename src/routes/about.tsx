@@ -13,13 +13,13 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Weldent Multispeciality Dental Clinic in Kalena Agrahara, Bengaluru — complete multispeciality dental care by Dr. Sheetal Kumar G, BDS.",
+          "Weldent Multispeciality Dental Clinic in Kalena Agrahara, Bengaluru, led by Dr. Sheetal Kumar G, BDS and supported by appropriate clinical referrals when needed.",
       },
       { property: "og:title", content: "About Weldent Dental" },
       {
         property: "og:description",
         content:
-          "A calm, multispeciality dental practice on Bannerghatta Road, South Bengaluru, run by Dr. Sheetal Kumar G.",
+          "A neighbourhood dental clinic near Bannerghatta Road in Kalena Agrahara, Bengaluru, led by Dr. Sheetal Kumar G.",
       },
     ],
     links: canonicalLinks("/about"),
@@ -33,7 +33,7 @@ function AboutPage() {
       <PageHero
         eyebrow="Our story"
         title="Built around one uncommon idea: unhurried dentistry."
-        copy={`${clinic.businessName} is a neighbourhood multispeciality practice on Bannerghatta Road, run by Dr. Sheetal Kumar G. One dentist, one clear rule: nobody is rushed and nobody is sold treatment they don't genuinely need.`}
+        copy={`${clinic.businessName} is a neighbourhood dental clinic in Kalena Agrahara near Bannerghatta Road, led by Dr. Sheetal Kumar G. Treatment options are explained clearly so patients can make informed decisions.`}
       />
 
       <div className="shell pb-6">

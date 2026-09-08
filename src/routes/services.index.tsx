@@ -8,11 +8,11 @@ import { canonicalLinks } from "@/lib/seo";
 export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
-      { title: "Dental Treatments in Bengaluru | Weldent Dental" },
+      { title: "Dental Treatments in Kalena Agrahara | Weldent Dental" },
       {
         name: "description",
         content:
-          "Preventive care, root canals, crown & bridge, braces, implants, whitening, kids and geriatric dentistry at Weldent Multispeciality Dental Clinic, Bengaluru.",
+          "Explore dental treatments at Weldent Dental in Kalena Agrahara, Bengaluru, including teeth cleaning, fillings, root canals, crowns, dentures, braces and gum care.",
       },
       { property: "og:title", content: "Dental Treatments | Weldent Dental" },
       {
@@ -33,8 +33,8 @@ function ServicesPage() {
     <>
       <PageHero
         eyebrow="Treatments"
-        title="Every speciality, one calm clinic."
-        copy="From a routine polish to a full mouth reconstruction — planned digitally, explained plainly, priced up front."
+        title="Dental treatments in Kalena Agrahara, Bengaluru"
+        copy="From check-ups and teeth cleaning to restorative and specialised care — each suitable option is explained clearly before treatment begins."
       />
       <div className="shell space-y-9 pb-8 md:space-y-14 md:pb-10">
         {categories.map((cat) => (

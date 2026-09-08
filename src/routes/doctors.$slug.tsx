@@ -1,11 +1,11 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Award, Quote } from "lucide-react";
 import { Button, ButtonLink, Eyebrow, Panel } from "@/components/kit";
 import { Reveal } from "@/components/motion";
 import { ServiceCard } from "@/components/cards";
 import { useBooking } from "@/components/BookingContext";
 import { doctors, services, type Doctor } from "@/lib/site";
-import { canonicalLinks } from "@/lib/seo";
+import { absoluteUrl, canonicalLinks, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/doctors/$slug")({
   loader: ({ params }) => {
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/doctors/$slug")({
     const d = loaderData.doctor;
     return {
       meta: [
-        { title: `${d.name} — ${d.role} | Weldent Dental Clinic` },
+        { title: `${d.name}, Dentist in Kalena Agrahara | Weldent Dental` },
         { name: "description", content: `${d.name}, ${d.qualifications}. ${d.philosophy}` },
         { property: "og:title", content: `${d.name} | Weldent Dental Clinic` },
         { property: "og:description", content: d.philosophy },
@@ -35,9 +35,46 @@ function DoctorDetail() {
   const { doctor } = Route.useLoaderData() as { doctor: Doctor };
   const booking = useBooking();
   const treatments = services.filter((s) => doctor.treatments.includes(s.slug));
+  const pageUrl = absoluteUrl(`/doctors/${doctor.slug}`);
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Doctors", item: absoluteUrl("/doctors") },
+        { "@type": "ListItem", position: 3, name: doctor.name, item: pageUrl },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": `${pageUrl}#doctor`,
+      name: doctor.name,
+      jobTitle: doctor.role,
+      description: doctor.qualifications,
+      image: absoluteUrl(doctor.photo),
+      url: pageUrl,
+      identifier: "KSDC Reg No. 59793 A",
+      worksFor: { "@type": "Dentist", "@id": `${SITE_URL}/#clinic` },
+    },
+  ];
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
+      <nav aria-label="Breadcrumb" className="shell pt-3 text-sm text-muted-foreground">
+        <Link to="/" className="hover:text-primary">Home</Link>
+        <span aria-hidden="true"> / </span>
+        <Link to="/doctors" className="hover:text-primary">Doctors</Link>
+        <span aria-hidden="true"> / </span>
+        <span aria-current="page">{doctor.name}</span>
+      </nav>
       <section className="shell pt-5 pb-8 md:pt-12 md:pb-10">
         <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <Reveal>
@@ -46,7 +83,7 @@ function DoctorDetail() {
                 src={doctor.photo}
                 width="1086"
                 height="1448"
-                alt={doctor.name}
+                alt={`${doctor.name}, dentist at Weldent Dental in Kalena Agrahara, Bengaluru`}
                 className="aspect-3/4 w-full rounded-2xl object-cover object-top"
               />
             </div>

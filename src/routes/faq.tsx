@@ -20,7 +20,7 @@ export const Route = createFileRoute("/faq")({
       {
         property: "og:description",
         content:
-          "Appointments, costs, sterilisation and treatment — answered plainly by Dr. Sheetal Kumar G.",
+          "Appointments, costs, sterilisation and treatment — answered plainly by the Weldent Dental team.",
       },
     ],
     links: canonicalLinks("/faq"),
