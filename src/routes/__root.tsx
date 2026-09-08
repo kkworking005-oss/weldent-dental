@@ -79,7 +79,9 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { title: "Dentist in Kalena Agrahara, Bengaluru | Weldent Dental" },
+      {
+        title: "Weldent Multispeciality Dental Clinic | Kalena Agrahara, Bengaluru",
+      },
       {
         name: "description",
         content:
@@ -96,10 +98,23 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: clinic.businessName },
       { property: "og:locale", content: "en_IN" },
-      { property: "og:image", content: absoluteUrl("/images/clinic-front.webp") },
-      { property: "og:image:alt", content: "Weldent Dental Clinic in Kalena Agrahara, Bengaluru" },
+      {
+        property: "og:image",
+        content: absoluteUrl("/images/weldent-social-preview.webp"),
+      },
+      { property: "og:image:type", content: "image/webp" },
+      { property: "og:image:width", content: "2006" },
+      { property: "og:image:height", content: "1254" },
+      {
+        property: "og:image:alt",
+        content: "Weldent Multispeciality Dental Clinic logo",
+      },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: absoluteUrl("/images/clinic-front.webp") },
+      {
+        name: "twitter:image",
+        content: absoluteUrl("/images/weldent-social-preview.webp"),
+      },
+      { name: "twitter:image:alt", content: "Weldent Multispeciality Dental Clinic logo" },
     ],
     links: [
       {
@@ -164,7 +179,7 @@ function RootShell({ children }: { children: ReactNode }) {
                     "Neighbourhood dental clinic in Kalena Agrahara near Bannerghatta Road, Bengaluru.",
                   url: SITE_URL,
                   image: absoluteUrl("/images/clinic-front.webp"),
-                  logo: absoluteUrl("/favicon.ico"),
+                  logo: absoluteUrl("/images/weldent-social-preview.webp"),
                   telephone: clinic.phoneHref.replace("tel:", ""),
                   email: clinic.email,
                   currenciesAccepted: "INR",

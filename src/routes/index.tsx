@@ -11,15 +11,30 @@ import { canonicalLinks } from "@/lib/seo";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dentist in Kalena Agrahara, Bengaluru | Weldent Dental" },
+      {
+        title: "Weldent Multispeciality Dental Clinic | Kalena Agrahara, Bengaluru",
+      },
       {
         name: "description",
         content:
           "Visit Weldent Dental, a dental clinic in Kalena Agrahara near Bannerghatta Road, Bengaluru, for check-ups, teeth cleaning, root canals, crowns and family dental care.",
       },
-      { property: "og:title", content: "Dentist in Kalena Agrahara, Bengaluru | Weldent Dental" },
+      {
+        property: "og:title",
+        content: "Weldent Multispeciality Dental Clinic | Kalena Agrahara, Bengaluru",
+      },
       {
         property: "og:description",
+        content:
+          "Preventive, restorative and specialised dental care near Bannerghatta Road in South Bengaluru.",
+      },
+      { property: "og:url", content: "https://weldentdental.com/" },
+      {
+        name: "twitter:title",
+        content: "Weldent Multispeciality Dental Clinic | Kalena Agrahara, Bengaluru",
+      },
+      {
+        name: "twitter:description",
         content:
           "Preventive, restorative and specialised dental care near Bannerghatta Road in South Bengaluru.",
       },
