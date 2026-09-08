@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "weldent-dental-clinic",
+  "main": ".output/server/index.mjs",
+  "compatibility_date": "2026-09-06",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".output/public",
+    "binding": "ASSETS",
+  },
+  "d1_databases": [
+    {
+      "binding": "weldent",
+      "database_name": "weldent",
+      "database_id": "abf0ac3f-6439-41e8-8283-cafed2515c36",
+    },
+  ],
+  "observability": {
+    "enabled": true,
+  },
+}
