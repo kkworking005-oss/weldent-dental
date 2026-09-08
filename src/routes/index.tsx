@@ -46,8 +46,8 @@ function Home() {
       <section className="shell pt-4 pb-10 md:pt-10 md:pb-16">
         <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="md:animate-fade-up">
-            <Eyebrow>Kalena Agrahara · Bengaluru</Eyebrow>
-            <h1 className="mt-6 text-[2.35rem] leading-[1.02] sm:text-[2.9rem] md:text-[4.8rem]">
+            <Eyebrow>Weldent Multispeciality Dental Clinic</Eyebrow>
+            <h1 className="mt-7 text-[2.6rem] leading-[1] sm:text-[3.3rem] md:text-[5rem]">
               Dentistry that feels
               <br />
               <span className="italic text-primary">quietly</span> effortless.
