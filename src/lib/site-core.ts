@@ -21,7 +21,7 @@ export const clinic = {
   googleReview: "https://g.page/r/CQ1-6xxnOmpzEBM/review",
   instagram: "https://www.instagram.com/weldent_dentalclinic/",
   mapEmbed:
-    "https://www.google.com/maps?q=Weldent%20Multispeciality%20Dental%20Clinic%2C%20B1%20First%20Floor%2C%20Eastern%20Enclave%2C%20MLA%20Layout%20Main%20Road%2C%20Kothnur%2C%20Kalena%20Agrahara%2C%20Bengaluru%20560076&output=embed",
+    "https://www.google.com/maps?q=12.865192%2C77.5920558&z=17&output=embed",
   mapUrl: "https://maps.app.goo.gl/iiuNEunvqffEoXsb9?g_st=ac",
   hours: [
     { day: "Monday – Saturday", time: "10:30 AM – 09:00 PM" },
