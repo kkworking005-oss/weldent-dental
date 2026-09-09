@@ -38,7 +38,7 @@
 }
 
 .booking-confirmation-progress span {
-  animation: booking-progress 10s linear forwards;
+  animation: booking-progress 2s linear forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
