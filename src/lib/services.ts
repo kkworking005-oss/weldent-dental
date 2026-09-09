@@ -226,7 +226,7 @@ export const services: Service[] = [
         a: "No. Suitability depends on the required tooth movement, bite, gum health, oral hygiene and ability to wear the appliance as directed.",
       },
     ],
-    doctors: [],
+    doctors: ["dr-karthik-p"],
   },
   {
     slug: "surgical-extraction",
@@ -250,7 +250,7 @@ export const services: Service[] = [
         a: "Recovery varies with the tooth, procedure complexity and individual healing. Follow your clinician's instructions and contact the clinic if symptoms worsen.",
       },
     ],
-    doctors: ["dr-sheetal-kumar-g"],
+    doctors: ["dr-lakshmi-bhardawaj"],
   },
   {
     slug: "dental-implants",
@@ -274,7 +274,7 @@ export const services: Service[] = [
         a: "No. Suitability depends on oral and general health, bone, gums, medicines, smoking, bite and the proposed restoration.",
       },
     ],
-    doctors: [],
+    doctors: ["dr-niharika-k-g"],
   },
   {
     slug: "periodontal-gum-care",
@@ -298,7 +298,7 @@ export const services: Service[] = [
         a: "Periodontal disease can recur or progress. Consistent home care, risk-factor control and professional maintenance are important.",
       },
     ],
-    doctors: ["dr-sheetal-kumar-g"],
+    doctors: ["dr-niharika-k-g"],
   },
   {
     slug: "laser-dentistry",
@@ -328,7 +328,7 @@ export const services: Service[] = [
     slug: "pediatric-dentistry",
     dateModified,
     title: "Pediatric dentistry and child care",
-    category: "Specialized & Urgent Care",
+    category: "Specialized Dental Care",
     short:
       "Child-focused dental visits, prevention and treatment planned around age, development, comfort and clinical need.",
     who: "Infants, children and teenagers requiring preventive, diagnostic or restorative dental care.",
@@ -347,29 +347,5 @@ export const services: Service[] = [
       },
     ],
     doctors: [],
-  },
-  {
-    slug: "emergency-dentist",
-    dateModified,
-    title: "Emergency",
-    category: "Specialized & Urgent Care",
-    short:
-      "Prompt assessment for urgent dental pain, swelling, trauma, bleeding or a broken tooth during clinic opening hours.",
-    who: "Patients with severe or worsening dental symptoms, injury, swelling, bleeding or another urgent oral-health concern.",
-    duration: "Triage and appointment length depend on urgency and findings",
-    steps: [
-      "Contact the clinic and describe symptoms",
-      "Triage urgency and relevant medical history",
-      "Examine and stabilise the immediate problem",
-      "Explain definitive treatment and follow-up",
-    ],
-    aftercare: standardAftercare,
-    faqs: [
-      {
-        q: "When should I seek hospital emergency care?",
-        a: "Seek emergency medical help for breathing or swallowing difficulty, uncontrolled bleeding, major facial trauma or rapidly spreading swelling. For other urgent dental concerns, call the clinic.",
-      },
-    ],
-    doctors: ["dr-sheetal-kumar-g"],
   },
 ];

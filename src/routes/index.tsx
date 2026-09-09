@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Weldent Multispeciality Dental Clinic | Kalena Agrahara, Bengaluru",
+        title: "Dental Clinic in Kalena Agrahara, Bengaluru | Weldent Dental",
       },
       {
         name: "description",
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:title",
-        content: "Weldent Multispeciality Dental Clinic | Kalena Agrahara, Bengaluru",
+        content: "Dental Clinic in Kalena Agrahara, Bengaluru | Weldent Dental",
       },
       {
         property: "og:description",
@@ -41,7 +41,7 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: "https://weldentdental.com/" },
       {
         name: "twitter:title",
-        content: "Weldent Multispeciality Dental Clinic | Kalena Agrahara, Bengaluru",
+        content: "Dental Clinic in Kalena Agrahara, Bengaluru | Weldent Dental",
       },
       {
         name: "twitter:description",

@@ -482,11 +482,11 @@ export const faqs = [
     items: [
       {
         q: "Is treatment painful?",
-        a: "Modern local anaesthesia, and conscious sedation where appropriate, means most procedures are genuinely comfortable.",
+        a: "Local anaesthesia and careful clinical techniques may help manage discomfort when appropriate. Individual experiences vary, so discuss any anxiety or previous difficulties with the treating clinician before care begins.",
       },
       {
         q: "How often should I have a check-up?",
-        a: "Every six months for most people, every three months during active gum therapy.",
+        a: "The appropriate interval depends on your oral health, treatment needs and risk factors. Your dentist will recommend a review schedule after examining you.",
       },
       {
         q: "Do you follow sterilisation protocols?",

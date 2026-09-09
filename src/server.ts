@@ -48,6 +48,7 @@ type Booking = {
 };
 
 const SITE_ORIGIN = "https://weldentdental.com";
+const BUILD_ID = "seo-audit-2026-09-09";
 const maximumBookingBodyLength = 16_384;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -98,6 +99,7 @@ function jsonResponse(body: object, status = 200, headers?: HeadersInit) {
     headers: {
       "content-type": "application/json; charset=utf-8",
       "cache-control": "no-store",
+      "x-robots-tag": "noindex, nofollow",
       ...headers,
     },
   });
@@ -404,8 +406,20 @@ export default {
   async fetch(request: Request, directEnv?: CloudflareEnv, ctx?: unknown) {
     try {
       const requestUrl = new URL(request.url);
+      const isCanonicalHostname =
+        requestUrl.hostname === "weldentdental.com" ||
+        requestUrl.hostname === "www.weldentdental.com";
+      if (requestUrl.protocol !== "https:" && isCanonicalHostname) {
+        return Response.redirect(`${SITE_ORIGIN}${requestUrl.pathname}${requestUrl.search}`, 301);
+      }
       if (requestUrl.hostname === "www.weldentdental.com") {
         return Response.redirect(`${SITE_ORIGIN}${requestUrl.pathname}${requestUrl.search}`, 301);
+      }
+      if (requestUrl.pathname === "/__health") {
+        return jsonResponse({ status: "ok", build: BUILD_ID, canonicalOrigin: SITE_ORIGIN });
+      }
+      if (requestUrl.pathname === "/contact") {
+        return Response.redirect(`${SITE_ORIGIN}/book${requestUrl.search}`, 301);
       }
       if (requestUrl.pathname === "/booking") {
         return Response.redirect(`${SITE_ORIGIN}/book`, 301);
@@ -414,6 +428,7 @@ export default {
         return Response.redirect(`${SITE_ORIGIN}/blog/braces-treatment-guide`, 301);
       }
       const serviceRedirects: Record<string, string> = {
+        "/services/emergency-dentist": "/services/check-ups",
         "/services/preventive-care": "/services/preventive-restorations",
         "/services/crown-bridge": "/services/crown-veneers-bridges",
         "/services/smile-correction": "/services/teeth-whitening-cosmetic",

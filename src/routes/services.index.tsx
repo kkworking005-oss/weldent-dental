@@ -12,13 +12,13 @@ export const Route = createFileRoute("/services/")({
       {
         name: "description",
         content:
-          "Explore check-ups, teeth cleaning, X-rays, restorations, root canals, crowns, dentures, cosmetic care, braces, implants, laser care, pediatric and emergency dentistry in Kalena Agrahara.",
+          "Explore check-ups, teeth cleaning, X-rays, restorations, root canals, crowns, dentures, cosmetic care, braces, implants, laser care and pediatric dentistry in Kalena Agrahara.",
       },
       { property: "og:title", content: "Dental Treatments | Weldent Dental" },
       {
         property: "og:description",
         content:
-          "Preventive, restorative, cosmetic, orthodontic, surgical, periodontal, pediatric and urgent dental care in Kalena Agrahara.",
+          "Preventive, restorative, cosmetic, orthodontic, surgical, periodontal and pediatric dental care in Kalena Agrahara.",
       },
     ],
     links: canonicalLinks("/services"),

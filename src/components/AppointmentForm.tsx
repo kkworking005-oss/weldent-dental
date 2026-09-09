@@ -206,7 +206,7 @@ export function AppointmentForm({ className }: { className?: string }) {
         </Button>
         <p className="text-xs text-muted-foreground">
           Your details are saved and a prefilled WhatsApp message opens so the clinic can confirm
-          your slot. For emergencies, please call directly.
+          your slot. For urgent dental concerns during clinic hours, please call directly.
         </p>
       </form>
     </>

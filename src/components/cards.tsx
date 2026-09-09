@@ -88,7 +88,11 @@ export function DoctorCard({
         >
           {doctor.name}
         </h3>
-        <p className={isFeatured ? "mt-2 text-base text-primary md:text-lg" : "mt-1 text-sm text-primary"}>
+        <p
+          className={
+            isFeatured ? "mt-2 text-base text-primary md:text-lg" : "mt-1 text-sm text-primary"
+          }
+        >
           {doctor.role}
         </p>
         <p
@@ -119,7 +123,8 @@ export function TestimonialCard({
 }) {
   const [expanded, setExpanded] = useState(false);
   const shouldTruncate = t.quote.length > 220;
-  const displayQuote = shouldTruncate && !expanded ? `${t.quote.slice(0, 220).trimEnd()}…` : t.quote;
+  const displayQuote =
+    shouldTruncate && !expanded ? `${t.quote.slice(0, 220).trimEnd()}…` : t.quote;
 
   return (
     <figure className="glass flex h-full flex-col self-start rounded-3xl p-5 md:p-6">

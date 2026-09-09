@@ -13,7 +13,6 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileActionBar, WhatsAppButton } from "@/components/FloatingActions";
 import { BookingProvider } from "@/components/BookingContext";
-import { getSmilesTreated, getYearsOfExperience } from "@/lib/dynamicStats";
 import { clinic } from "@/lib/site-core";
 import { services } from "@/lib/services";
 import { doctors } from "@/lib/site";
@@ -82,7 +81,7 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       {
-        title: "Weldent Multispeciality Dental Clinic | Kalena Agrahara, Bengaluru",
+        title: "Dental Clinic in Kalena Agrahara, Bengaluru | Weldent Dental",
       },
       {
         name: "description",
@@ -217,7 +216,6 @@ function RootShell({ children }: { children: ReactNode }) {
                   telephone: clinic.phoneHref.replace("tel:", ""),
                   email: clinic.email,
                   currenciesAccepted: "INR",
-                  foundingDate: "2023",
                   knowsAbout: services.map((service) => service.title),
                   employee: doctors.map((doctor) => ({
                     "@type": "Person",
@@ -226,24 +224,6 @@ function RootShell({ children }: { children: ReactNode }) {
                     jobTitle: doctor.role,
                     url: absoluteUrl(`/doctors/${doctor.slug}`),
                   })),
-                  additionalProperty: [
-                    {
-                      "@type": "PropertyValue",
-                      name: "Years of clinical experience",
-                      value: getYearsOfExperience(),
-                      unitText: "years",
-                    },
-                    {
-                      "@type": "PropertyValue",
-                      name: "Smiles treated",
-                      value: getSmilesTreated(),
-                    },
-                    {
-                      "@type": "PropertyValue",
-                      name: "Days open each week",
-                      value: 7,
-                    },
-                  ],
                   address: {
                     "@type": "PostalAddress",
                     streetAddress: clinic.streetAddress,

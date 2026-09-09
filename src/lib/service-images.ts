@@ -15,7 +15,6 @@ const serviceImages: Record<string, string> = {
   "pediatric-dentistry": "/images/services/pediatric dentistry and child care.webp",
   "periodontal-gum-care": "/images/services/s2.webp",
   "laser-dentistry": "/images/services/Laser.webp",
-  "emergency-dentist": "/images/services/Emergency.webp",
 };
 
 export function getServiceImage(service: Pick<Service, "slug">) {
