@@ -144,7 +144,8 @@ export const Route = createRootRoute({
         type: "font/woff2",
         crossOrigin: "anonymous",
       },
-      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon", sizes: "any" },
+      { rel: "shortcut icon", href: "/favicon.ico", type: "image/x-icon" },
       {
         rel: "icon",
         href: "/favicon-48.png",
