@@ -5,7 +5,14 @@ export const clinic = {
   tagline: "Your smile, in expert hands.",
   domain: "weldentdental.com",
   address:
-    "B1, First Floor, Eastern Enclave, MLA Layout Main Road, Kalena Agrahara, Bengaluru, Karnataka 560076, India",
+    "B1, First Floor, Eastern Enclave, MLA Layout Main Road, Kothnur, Kalena Agrahara, Bengaluru, Karnataka 560076, India",
+  streetAddress: "B1, First Floor, Eastern Enclave, MLA Layout Main Road, Kothnur, Kalena Agrahara",
+  addressLocality: "Bengaluru",
+  addressRegion: "Karnataka",
+  postalCode: "560076",
+  addressCountry: "IN",
+  latitude: 12.865192,
+  longitude: 77.5920558,
   phone: "+91 90359 95828",
   phoneHref: "tel:+919035995828",
   whatsapp: "https://wa.me/919035995828",
@@ -14,7 +21,7 @@ export const clinic = {
   googleReview: "https://g.page/r/CQ1-6xxnOmpzEBM/review",
   instagram: "https://www.instagram.com/weldent_dentalclinic/",
   mapEmbed:
-    "https://www.google.com/maps?q=Weldent%20Multispeciality%20Dental%20Clinic%2C%20B1%20First%20Floor%2C%20Eastern%20Enclave%2C%20MLA%20Layout%20Main%20Road%2C%20Kalena%20Agrahara%2C%20Bengaluru%20560076&output=embed",
+    "https://www.google.com/maps?q=Weldent%20Multispeciality%20Dental%20Clinic%2C%20B1%20First%20Floor%2C%20Eastern%20Enclave%2C%20MLA%20Layout%20Main%20Road%2C%20Kothnur%2C%20Kalena%20Agrahara%2C%20Bengaluru%20560076&output=embed",
   mapUrl: "https://maps.app.goo.gl/iiuNEunvqffEoXsb9?g_st=ac",
   hours: [
     { day: "Monday – Saturday", time: "10:30 AM – 09:00 PM" },
@@ -33,6 +40,7 @@ export const nav = [
 ];
 
 export const serviceNav = [
+  { slug: "preventive-care", title: "Preventive Care" },
   { slug: "root-canal", title: "Root Canal Treatment" },
   { slug: "crown-bridge", title: "Crown & Bridge" },
   { slug: "braces", title: "Braces" },
