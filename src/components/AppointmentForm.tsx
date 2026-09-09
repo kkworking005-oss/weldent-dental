@@ -23,6 +23,8 @@ export const fieldClass =
   "w-full rounded-2xl glass-quiet px-4 py-3 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/70 focus:ring-2 focus:ring-primary/40";
 
 const times = ["Morning (10:30–12:30)", "Afternoon (12:30–4:30)", "Evening (4:30–9:00)"];
+const onlyDoctor = "Dr. Sheetal Kumar G";
+const bookingDoctors = doctors.filter((d) => d.name === onlyDoctor);
 
 export function AppointmentForm({ className }: { className?: string }) {
   const [busy, setBusy] = useState(false);
@@ -159,13 +161,22 @@ export function AppointmentForm({ className }: { className?: string }) {
               </option>
             ))}
           </select>
-          <select name="doctor" className={fieldClass} defaultValue="">
-            <option value="">Preferred doctor</option>
-            {doctors.map((d) => (
-              <option key={d.slug} value={d.name}>
-                {d.name}
-              </option>
-            ))}
+          <select
+            name="doctor"
+            className={fieldClass}
+            defaultValue={onlyDoctor}
+            aria-label="Doctor"
+            disabled={bookingDoctors.length === 1}
+          >
+            {bookingDoctors.length > 0 ? (
+              bookingDoctors.map((d) => (
+                <option key={d.slug} value={d.name}>
+                  {d.name}
+                </option>
+              ))
+            ) : (
+              <option value={onlyDoctor}>{onlyDoctor}</option>
+            )}
           </select>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">

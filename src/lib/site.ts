@@ -322,6 +322,13 @@ export const testimonials = [
     quote:
       "I randomly walked into Dr.Sheetal clinic today and explained about my tooth filling issue. He was kind in understanding, filled-in that exactly matches my tooth color. Best sevice by doctor and Clinic is very hygienic.",
   },
+  {
+    name: "Vani Saminathan",
+    treatment: "Root canal treatment and dental caps",
+    rating: 5,
+    quote:
+      "I had a very good experience with Dr. Sheetal Kumar. I visited him with pain in a molar and had a root canal treatment for the tooth. Dr. Sheetal was extremely patient, kind and thorough. He explained everything clearly and made sure I was comfortable during the treatment. He has also done an excellent job with the dental caps, - the fitting and finish are very good, and I am very happy with the result. The treatment was also quite affordable compared to the quality of care provided. The clinic is well maintained, clean and has a pleasant atmosphere. Overall, I am very satisfied with my experience and would definitely recommend Dr. Sheetal Kumar for his professionalism, attention to detail and caring approach.",
+  },
 ];
 
 export const posts = [

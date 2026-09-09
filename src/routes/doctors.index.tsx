@@ -41,10 +41,10 @@ function DoctorsPage() {
         <h2 id="principal-dentist-heading" className="sr-only">
           Principal dentist
         </h2>
-        <div className="grid max-w-sm gap-4 sm:grid-cols-2 md:gap-5">
+        <div className="mx-auto max-w-[1240px]">
           {principalDentists.map((d, i) => (
             <Reveal key={d.slug} delay={i * 90}>
-              <DoctorCard doctor={d} />
+              <DoctorCard doctor={d} variant="featured" />
             </Reveal>
           ))}
         </div>
