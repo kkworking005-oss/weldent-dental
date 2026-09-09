@@ -32,7 +32,7 @@ export const clinic = {
 export const nav = [
   { label: "Home", to: "/" },
   { label: "Services", to: "/services" },
-  { label: "Doctor", to: "/doctors" },
+  { label: "Doctors", to: "/doctors" },
   { label: "Gallery", to: "/gallery" },
   { label: "About", to: "/about" },
   { label: "Blog", to: "/blog" },
