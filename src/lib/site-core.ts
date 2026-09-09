@@ -36,7 +36,6 @@ export const nav = [
   { label: "Gallery", to: "/gallery" },
   { label: "About", to: "/about" },
   { label: "Blog", to: "/blog" },
-  { label: "Contact", to: "/contact" },
 ];
 
 export const serviceNav = [

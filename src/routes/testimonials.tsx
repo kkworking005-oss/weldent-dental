@@ -33,7 +33,7 @@ function TestimonialsPage() {
         title="What patients say about Weldent Dental"
         copy="Unedited words from patients treated at Kalena Agrahara."
       />
-      <div className="shell grid gap-4 pb-8 md:pb-10 md:grid-cols-2 lg:grid-cols-3">
+      <div className="shell grid items-start gap-4 pb-8 md:pb-10 md:grid-cols-2 lg:grid-cols-3">
         {testimonials.map((t, i) => (
           <Reveal key={t.name} delay={i * 70}>
             <TestimonialCard t={t} />

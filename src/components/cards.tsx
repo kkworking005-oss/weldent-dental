@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Star } from "lucide-react";
 import type { Doctor, Service } from "@/lib/site";
@@ -114,16 +117,32 @@ export function TestimonialCard({
 }: {
   t: { name: string; treatment: string; rating: number; quote: string };
 }) {
+  const [expanded, setExpanded] = useState(false);
+  const shouldTruncate = t.quote.length > 220;
+  const displayQuote = shouldTruncate && !expanded ? `${t.quote.slice(0, 220).trimEnd()}…` : t.quote;
+
   return (
-    <figure className="glass flex h-full flex-col rounded-3xl p-5 md:p-6">
+    <figure className="glass flex h-full flex-col self-start rounded-3xl p-5 md:p-6">
       <div className="flex gap-1 text-accent">
         {Array.from({ length: t.rating }).map((_, i) => (
           <Star key={i} className="size-4 fill-current" />
         ))}
       </div>
-      <blockquote className="mt-4 flex-1 font-display text-[1.2rem] md:text-[1.35rem] leading-snug text-foreground/90">
-        “{t.quote}”
+
+      <blockquote className="mt-4 flex-1 font-display text-[1.2rem] leading-snug text-foreground/90 md:text-[1.35rem]">
+        “{displayQuote}”
       </blockquote>
+
+      {shouldTruncate && (
+        <button
+          type="button"
+          onClick={() => setExpanded((value) => !value)}
+          className="mt-3 self-start text-sm font-medium text-primary underline-offset-4 transition hover:underline"
+        >
+          {expanded ? "Read less" : "Read more"}
+        </button>
+      )}
+
       <figcaption className="mt-5 border-t border-hair pt-4 text-sm">
         <span className="font-medium">{t.name}</span>
         <span className="text-muted-foreground"> · {t.treatment}</span>

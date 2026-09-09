@@ -24,7 +24,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
   const normalizedPath = location.pathname.replace(/\/+$/, "") || "/";
-  const isBookingRoute = normalizedPath === "/booking";
+  const isBookingRoute = normalizedPath === "/book";
   const [isOpen, setOpen] = useState(isBookingRoute);
   const wasBookingRoute = useRef(isBookingRoute);
 

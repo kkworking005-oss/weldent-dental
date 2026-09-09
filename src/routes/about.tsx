@@ -116,8 +116,8 @@ function AboutPage() {
               <ButtonLink to="/book" size="lg">
                 Book a visit
               </ButtonLink>
-              <ButtonLink to="/contact" variant="glass" size="lg">
-                Contact us
+              <ButtonLink to="/faq" variant="glass" size="lg">
+                FAQ
               </ButtonLink>
             </div>
           </div>

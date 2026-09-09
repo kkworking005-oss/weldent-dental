@@ -43,7 +43,7 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      className={cn("site-reveal transition-all duration-[450ms] ease-out", className)}
+      className={cn("site-reveal self-start transition-all duration-[450ms] ease-out", className)}
       style={{
         opacity: shown ? 1 : 0,
         transform: shown ? "none" : "translateY(14px)",

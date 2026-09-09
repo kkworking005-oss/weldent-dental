@@ -59,7 +59,6 @@ const staticIndexablePages: IndexablePage[] = [
   { path: "/", lastModified: "2026-09-09" },
   { path: "/about", lastModified: "2026-09-09" },
   { path: "/book", lastModified: "2026-09-08" },
-  { path: "/contact", lastModified: "2026-09-08" },
   { path: "/faq", lastModified: "2026-09-08" },
   { path: "/gallery", lastModified: "2026-09-08" },
   { path: "/testimonials", lastModified: "2026-09-08" },
@@ -300,7 +299,7 @@ function seoResource(request: Request, indexNowKey?: string) {
       .map((doctor) => `- [${doctor.name}](${SITE_ORIGIN}/doctors/${doctor.slug}): ${doctor.role}`)
       .join("\n");
     return new Response(
-      `# ${clinic.businessName}\n\n> ${clinic.tagline} Dental clinic in Kalena Agrahara, Bengaluru.\n\n## Verified clinic details\n\n- Address: ${clinic.address}\n- Phone: ${clinic.phone}\n- Email: ${clinic.email}\n- Hours: Monday-Saturday 10:30-21:00; Sunday 10:30-15:30\n- Canonical website: ${SITE_ORIGIN}/\n\n## Treatments\n\n${treatmentLinks}\n\n## Dental team\n\n${doctorLinks}\n\n## Important pages\n\n- [Book an appointment](${SITE_ORIGIN}/book)\n- [Contact and directions](${SITE_ORIGIN}/contact)\n- [Before and after gallery](${SITE_ORIGIN}/gallery)\n- [Frequently asked questions](${SITE_ORIGIN}/faq)\n- [Dental journal](${SITE_ORIGIN}/blog)\n\nTreatment suitability, timelines and outcomes vary by patient and require a clinical examination.\n`,
+      `# ${clinic.businessName}\n\n> ${clinic.tagline} Dental clinic in Kalena Agrahara, Bengaluru.\n\n## Verified clinic details\n\n- Address: ${clinic.address}\n- Phone: ${clinic.phone}\n- Email: ${clinic.email}\n- Hours: Monday-Saturday 10:30-21:00; Sunday 10:30-15:30\n- Canonical website: ${SITE_ORIGIN}/\n\n## Treatments\n\n${treatmentLinks}\n\n## Dental team\n\n${doctorLinks}\n\n## Important pages\n\n- [Book an appointment](${SITE_ORIGIN}/book)\n- [Before and after gallery](${SITE_ORIGIN}/gallery)\n- [Frequently asked questions](${SITE_ORIGIN}/faq)\n- [Dental journal](${SITE_ORIGIN}/blog)\n\nTreatment suitability, timelines and outcomes vary by patient and require a clinical examination.\n`,
       {
         headers: {
           "content-type": "text/plain; charset=utf-8",
