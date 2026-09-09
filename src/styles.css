@@ -331,6 +331,24 @@
     padding-bottom: calc(6rem + env(safe-area-inset-bottom));
   }
 
+  input[type="date"].booking-date {
+    min-height: 3.125rem;
+    color: var(--color-foreground);
+    color-scheme: light;
+    -webkit-text-fill-color: var(--color-foreground);
+    appearance: auto;
+    -webkit-appearance: auto;
+  }
+
+  input[type="date"].booking-date::-webkit-date-and-time-value {
+    min-height: 1.25rem;
+    text-align: left;
+  }
+
+  input[type="date"].booking-date::-webkit-calendar-picker-indicator {
+    opacity: 0.8;
+  }
+
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     .glass {
       background: oklch(0.975 0.012 225);
