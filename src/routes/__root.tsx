@@ -141,7 +141,25 @@ export const Route = createRootRoute({
         type: "font/woff2",
         crossOrigin: "anonymous",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      {
+        rel: "icon",
+        href: "/favicon-48.png",
+        type: "image/png",
+        sizes: "48x48",
+      },
+      {
+        rel: "icon",
+        href: "/favicon-96.png",
+        type: "image/png",
+        sizes: "96x96",
+      },
+      {
+        rel: "apple-touch-icon",
+        href: "/apple-touch-icon.png",
+        sizes: "180x180",
+      },
+      { rel: "manifest", href: "/site.webmanifest" },
       {
         rel: "alternate",
         type: "application/rss+xml",
