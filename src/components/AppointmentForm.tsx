@@ -90,9 +90,9 @@ export function AppointmentForm({ className }: { className?: string }) {
       ].filter(Boolean);
       const whatsappURL = `${clinic.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
 
-      toast.success("Booking received. Opening WhatsApp in 10 seconds.");
+      toast.success("Booking received. Opening WhatsApp in 2 seconds.");
       form.reset();
-      setConfirmation({ whatsappURL, secondsRemaining: 10 });
+      setConfirmation({ whatsappURL, secondsRemaining: 2 });
     } catch (error) {
       console.error("Appointment booking failed", error);
       toast.error(
