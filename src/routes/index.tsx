@@ -176,7 +176,7 @@ function Home() {
                 height="1024"
                 alt="Dr. Sheetal Kumar G, Principal Dental Surgeon at Weldent Dental"
                 loading="lazy"
-                className="aspect-4/3 size-full object-cover object-top"
+                className="aspect-[4/5] size-full object-cover object-[50%_28%] sm:aspect-4/3"
               />
             </div>
             <div className="flex flex-col justify-center">
