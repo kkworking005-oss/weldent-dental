@@ -27,6 +27,7 @@ const onlyDoctor = "Dr. Sheetal Kumar G";
 
 export function AppointmentForm({ className }: { className?: string }) {
   const [busy, setBusy] = useState(false);
+  const [preferredDate, setPreferredDate] = useState("");
   const [confirmation, setConfirmation] = useState<{
     whatsappURL: string;
     secondsRemaining: number;
@@ -92,6 +93,7 @@ export function AppointmentForm({ className }: { className?: string }) {
 
       toast.success("Booking received. Opening WhatsApp in 2 seconds.");
       form.reset();
+      setPreferredDate("");
       setConfirmation({ whatsappURL, secondsRemaining: 2 });
     } catch (error) {
       console.error("Appointment booking failed", error);
@@ -176,13 +178,22 @@ export function AppointmentForm({ className }: { className?: string }) {
           <input name="doctor" type="hidden" value={onlyDoctor} />
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
-          <input
-            name="preferred_date"
-            type="date"
-            className={`${fieldClass} booking-date`}
-            aria-label="Preferred date (required)"
-            required
-          />
+          <div className="relative">
+            <input
+              name="preferred_date"
+              type="date"
+              value={preferredDate}
+              onChange={(event) => setPreferredDate(event.target.value)}
+              className={`${fieldClass} booking-date`}
+              aria-label="Preferred date (required)"
+              required
+            />
+            {!preferredDate ? (
+              <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-sm text-muted-foreground">
+                Preferred date <span className="ml-1 text-primary">*</span>
+              </span>
+            ) : null}
+          </div>
           <select name="preferred_time" className={fieldClass} defaultValue="" required>
             <option value="" disabled>
               Preferred time
