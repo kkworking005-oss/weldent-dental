@@ -14,7 +14,9 @@ import { Footer } from "@/components/Footer";
 import { MobileActionBar, WhatsAppButton } from "@/components/FloatingActions";
 import { BookingProvider } from "@/components/BookingContext";
 import { getSmilesTreated, getYearsOfExperience } from "@/lib/dynamicStats";
-import { clinic, serviceNav } from "@/lib/site-core";
+import { clinic } from "@/lib/site-core";
+import { services } from "@/lib/services";
+import { doctors } from "@/lib/site";
 import { absoluteUrl, SITE_URL } from "@/lib/seo";
 
 function NotFoundComponent() {
@@ -203,11 +205,26 @@ function RootShell({ children }: { children: ReactNode }) {
                   description:
                     "Neighbourhood dental clinic in Kalena Agrahara near Bannerghatta Road, Bengaluru.",
                   url: SITE_URL,
-                  image: absoluteUrl("/images/clinic-front.webp"),
+                  image: [
+                    absoluteUrl("/images/hero/clinic-1.webp"),
+                    absoluteUrl("/images/hero/clinic-2.webp"),
+                    absoluteUrl("/images/hero/clinic-3.webp"),
+                    absoluteUrl("/images/hero/clinic-4.webp"),
+                    absoluteUrl("/images/hero/clinic-5.webp"),
+                  ],
                   logo: absoluteUrl("/icon-512.png"),
                   telephone: clinic.phoneHref.replace("tel:", ""),
                   email: clinic.email,
                   currenciesAccepted: "INR",
+                  foundingDate: "2023",
+                  knowsAbout: services.map((service) => service.title),
+                  employee: doctors.map((doctor) => ({
+                    "@type": "Person",
+                    "@id": `${absoluteUrl(`/doctors/${doctor.slug}`)}#doctor`,
+                    name: doctor.name,
+                    jobTitle: doctor.role,
+                    url: absoluteUrl(`/doctors/${doctor.slug}`),
+                  })),
                   additionalProperty: [
                     {
                       "@type": "PropertyValue",
@@ -219,6 +236,11 @@ function RootShell({ children }: { children: ReactNode }) {
                       "@type": "PropertyValue",
                       name: "Smiles treated",
                       value: getSmilesTreated(),
+                    },
+                    {
+                      "@type": "PropertyValue",
+                      name: "Days open each week",
+                      value: 7,
                     },
                   ],
                   address: {
@@ -272,7 +294,7 @@ function RootShell({ children }: { children: ReactNode }) {
                   hasOfferCatalog: {
                     "@type": "OfferCatalog",
                     name: "Dental treatments",
-                    itemListElement: serviceNav.map((service) => ({
+                    itemListElement: services.map((service) => ({
                       "@type": "Offer",
                       itemOffered: {
                         "@type": "Service",

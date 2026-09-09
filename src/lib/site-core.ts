@@ -40,13 +40,13 @@ export const nav = [
 ];
 
 export const serviceNav = [
-  { slug: "preventive-care", title: "Preventive Care" },
-  { slug: "root-canal", title: "Root Canal Treatment" },
-  { slug: "crown-bridge", title: "Crown & Bridge" },
-  { slug: "braces", title: "Braces" },
-  { slug: "dental-implants", title: "Dental Implants" },
-  { slug: "teeth-whitening", title: "Teeth Whitening" },
-  { slug: "pediatric-dentistry", title: "Kids Dentistry" },
+  { slug: "check-ups", title: "Check-ups" },
+  { slug: "root-canal", title: "Root canal treatment" },
+  { slug: "crown-veneers-bridges", title: "Crown, veneers and bridges" },
+  { slug: "braces-aligners", title: "Orthodontic braces and aligners" },
+  { slug: "dental-implants", title: "Dental implants" },
+  { slug: "teeth-whitening-cosmetic", title: "Teeth whitening and cosmetic" },
+  { slug: "pediatric-dentistry", title: "Pediatric dentistry and child care" },
 ];
 
 export function responsiveImageSet(name: string) {

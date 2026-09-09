@@ -53,13 +53,18 @@ function AboutPage() {
 
       <section className="shell py-8">
         <Reveal>
-          <Panel tone="dark" className="grid gap-8 sm:grid-cols-2">
+          <Panel tone="dark" className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((s) => (
               <div key={s.label}>
                 <p className="font-display text-[2.7rem] leading-none">
                   <Counter to={s.value} suffix={s.suffix} />
                 </p>
                 <p className="mt-2 text-xs text-primary-foreground/70">{s.label}</p>
+                {s.detail ? (
+                  <p className="mt-1 text-[0.68rem] leading-relaxed text-primary-foreground/55">
+                    {s.detail}
+                  </p>
+                ) : null}
               </div>
             ))}
           </Panel>

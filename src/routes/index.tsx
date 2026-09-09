@@ -4,8 +4,18 @@ import { Button, ButtonLink, Eyebrow, Panel, SectionHeading, btnClass } from "@/
 import { Counter, Reveal } from "@/components/motion";
 import { DoctorCard, ServiceCard, TestimonialCard } from "@/components/cards";
 import { BeforeAfter } from "@/components/BeforeAfter";
+import { HeroCarousel } from "@/components/HeroCarousel";
 import { useBooking } from "@/components/BookingContext";
-import { cases, clinic, doctors, photos, posts, services, stats, testimonials } from "@/lib/site";
+import {
+  cases,
+  clinic,
+  doctors,
+  heroImages,
+  posts,
+  services,
+  stats,
+  testimonials,
+} from "@/lib/site";
 import { canonicalLinks } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
@@ -92,17 +102,7 @@ function Home() {
           <Reveal delay={120}>
             <div className="relative">
               <div className="overflow-hidden rounded-3xl glass p-2.5 shadow-lift">
-                <img
-                  src="/images/clinic-front-768.webp"
-                  srcSet="/images/clinic-front-480.webp 480w, /images/clinic-front-768.webp 768w, /images/clinic-front.webp 1448w"
-                  sizes="(max-width: 1023px) calc(100vw - 40px), 45vw"
-                  width="1448"
-                  height="1086"
-                  loading="lazy"
-                  decoding="async"
-                  alt="Weldent Dental Clinic shopfront in Kalena Agrahara, Bengaluru"
-                  className="aspect-4/3 w-full rounded-2xl object-cover"
-                />
+                <HeroCarousel images={heroImages} />
               </div>
               <div className="absolute -bottom-6 -left-4 hidden rounded-3xl glass px-6 py-5 shadow-lift sm:block">
                 <p className="font-display text-4xl text-primary">
@@ -119,13 +119,18 @@ function Home() {
 
       <section className="shell py-6 md:py-8">
         <Reveal>
-          <Panel tone="dark" className="grid gap-8 sm:grid-cols-2">
+          <Panel tone="dark" className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((s) => (
               <div key={s.label}>
                 <p className="font-display text-[2.7rem] leading-none">
                   <Counter to={s.value} suffix={s.suffix} />
                 </p>
                 <p className="mt-2 text-xs tracking-wide text-primary-foreground/70">{s.label}</p>
+                {s.detail ? (
+                  <p className="mt-1 text-[0.68rem] leading-relaxed text-primary-foreground/55">
+                    {s.detail}
+                  </p>
+                ) : null}
               </div>
             ))}
           </Panel>
@@ -164,12 +169,14 @@ function Home() {
           <div className="grid gap-8 rounded-3xl glass p-5 md:p-10 lg:grid-cols-[0.85fr_1.15fr]">
             <div className="overflow-hidden rounded-3xl">
               <img
-                src={photos.operatory}
-                width="1160"
-                height="1356"
-                alt="Treatment room at Weldent Dental Clinic"
+                src={doctors[0]!.photo}
+                srcSet={`${doctors[0]!.photo.replace(/\.webp$/, "-480.webp")} 480w, ${doctors[0]!.photo} 768w`}
+                sizes="(max-width: 1023px) calc(100vw - 40px), 42vw"
+                width="768"
+                height="1024"
+                alt="Dr. Sheetal Kumar G, Principal Dental Surgeon at Weldent Dental"
                 loading="lazy"
-                className="aspect-4/3 size-full object-cover"
+                className="aspect-4/3 size-full object-cover object-top"
               />
             </div>
             <div className="flex flex-col justify-center">

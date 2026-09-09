@@ -1,18 +1,21 @@
 import type { Service } from "@/lib/site";
 
 const serviceImages: Record<string, string> = {
-  "preventive-care": "/images/services/s1.webp",
+  "check-ups": "/images/services/s1.webp",
+  "teeth-cleaning-gum-care": "/images/services/s2.webp",
+  "x-ray": "/images/services/s3.webp",
+  "preventive-restorations": "/images/services/s1.webp",
   "root-canal": "/images/services/s3.webp",
-  "crown-bridge": "/images/services/s4.webp",
-  "smile-correction": "/images/services/s5.webp",
-  "teeth-whitening": "/images/services/s6.webp",
+  "crown-veneers-bridges": "/images/services/s4.webp",
+  "teeth-whitening-cosmetic": "/images/services/s6.webp",
   dentures: "/images/services/s7.webp",
   "dental-implants": "/images/services/s8.webp",
-  braces: "/images/services/s9.webp",
-  extractions: "/images/services/s10.webp",
+  "braces-aligners": "/images/services/s9.webp",
+  "surgical-extraction": "/images/services/s10.webp",
   "pediatric-dentistry": "/images/services/s11.webp",
-  "geriatric-dentistry": "/images/services/s12.webp",
-  "gum-therapy": "/images/services/s2.webp",
+  "periodontal-gum-care": "/images/services/s2.webp",
+  "laser-dentistry": "/images/services/s5.webp",
+  "emergency-dentist": "/images/services/s12.webp",
 };
 
 export function getServiceImage(service: Pick<Service, "slug">) {

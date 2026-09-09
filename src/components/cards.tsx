@@ -36,15 +36,18 @@ export function DoctorCard({ doctor }: { doctor: Doctor }) {
     <Link
       to="/doctors/$slug"
       params={{ slug: doctor.slug }}
+      aria-label={`View ${doctor.name}'s full profile, qualifications and specialties`}
       className="glass group flex h-full min-w-0 flex-col overflow-hidden rounded-3xl p-2.5 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-lift"
     >
       <div className="aspect-3/4 w-full shrink-0 overflow-hidden rounded-2xl bg-primary/5">
         <img
           src={doctor.photo}
+          srcSet={`${doctor.photo.replace(/\.webp$/, "-480.webp")} 480w, ${doctor.photo} 768w`}
+          sizes="(max-width: 639px) calc(100vw - 44px), (max-width: 1023px) 46vw, 280px"
           alt={doctor.name}
           loading="lazy"
-          width="1086"
-          height="1448"
+          width="768"
+          height="1024"
           className="block size-full object-cover object-top transition-transform duration-[1200ms] group-hover:scale-[1.025]"
         />
       </div>
@@ -54,6 +57,7 @@ export function DoctorCard({ doctor }: { doctor: Doctor }) {
         <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
           {doctor.qualifications}
         </p>
+        <span className="mt-4 text-sm font-medium text-primary">View profile →</span>
       </div>
     </Link>
   );

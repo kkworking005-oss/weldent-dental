@@ -17,7 +17,10 @@ export const Route = createFileRoute("/contact")({
           "Call +91 90359 95828, message us on WhatsApp or visit Weldent Multispeciality Dental Clinic in Kalena Agrahara, Bannerghatta Road, Bengaluru.",
       },
       { property: "og:title", content: "Contact Weldent Dental" },
-      { property: "og:description", content: "Phone, WhatsApp, email, directions and clinic hours." },
+      {
+        property: "og:description",
+        content: "Phone, WhatsApp, email, directions and clinic hours.",
+      },
     ],
     links: canonicalLinks("/contact"),
   }),

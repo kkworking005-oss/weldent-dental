@@ -2,7 +2,7 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
-import { posts, services } from "./lib/site";
+import { clinic, doctors, posts, services } from "./lib/site";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -25,6 +25,7 @@ type D1Database = {
 
 type CloudflareEnv = {
   weldent: D1Database;
+  INDEXNOW_KEY?: string;
 };
 
 type CloudflareRequest = Request & {
@@ -47,7 +48,6 @@ type Booking = {
 };
 
 const SITE_ORIGIN = "https://weldentdental.com";
-const INDEXNOW_KEY = "24a6e7049e8748119c5540de4e1748d7";
 const maximumBookingBodyLength = 16_384;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -56,15 +56,14 @@ let serverEntryPromise: Promise<ServerEntry> | undefined;
 type IndexablePage = { path: string; lastModified: string };
 
 const staticIndexablePages: IndexablePage[] = [
-  { path: "/", lastModified: "2026-09-08" },
-  { path: "/about", lastModified: "2026-09-08" },
+  { path: "/", lastModified: "2026-09-09" },
+  { path: "/about", lastModified: "2026-09-09" },
   { path: "/book", lastModified: "2026-09-08" },
   { path: "/contact", lastModified: "2026-09-08" },
   { path: "/faq", lastModified: "2026-09-08" },
   { path: "/gallery", lastModified: "2026-09-08" },
   { path: "/testimonials", lastModified: "2026-09-08" },
-  { path: "/doctors", lastModified: "2026-09-08" },
-  { path: "/doctors/dr-sheetal-kumar-g", lastModified: "2026-09-08" },
+  { path: "/doctors", lastModified: "2026-09-09" },
 ];
 
 function latestDate(dates: string[]) {
@@ -81,6 +80,10 @@ function indexablePages(): IndexablePage[] {
     ...services.map((service) => ({
       path: `/services/${service.slug}`,
       lastModified: service.dateModified,
+    })),
+    ...doctors.map((doctor) => ({
+      path: `/doctors/${doctor.slug}`,
+      lastModified: "2026-09-09",
     })),
     { path: "/blog", lastModified: latestDate(posts.map((post) => post.dateModified)) },
     ...posts.map((post) => ({
@@ -222,7 +225,7 @@ function getCloudflareEnv(request: Request, directEnv?: CloudflareEnv) {
   return directEnv ?? (request as CloudflareRequest).runtime?.cloudflare?.env;
 }
 
-function seoResource(request: Request) {
+function seoResource(request: Request, indexNowKey?: string) {
   const url = new URL(request.url);
   const isPreview = url.hostname.endsWith(".workers.dev");
 
@@ -236,6 +239,18 @@ function seoResource(request: Request) {
           "User-agent: OAI-SearchBot",
           "Allow: /",
           "",
+          "User-agent: GPTBot",
+          "Allow: /",
+          "",
+          "User-agent: ChatGPT-User",
+          "Allow: /",
+          "",
+          "User-agent: ClaudeBot",
+          "Allow: /",
+          "",
+          "User-agent: PerplexityBot",
+          "Allow: /",
+          "",
           "User-agent: Bingbot",
           "Allow: /",
         ].join("\n");
@@ -247,8 +262,8 @@ function seoResource(request: Request) {
     });
   }
 
-  if (!isPreview && url.pathname === `/${INDEXNOW_KEY}.txt`) {
-    return new Response(`${INDEXNOW_KEY}\n`, {
+  if (!isPreview && indexNowKey && url.pathname === `/${indexNowKey}.txt`) {
+    return new Response(`${indexNowKey}\n`, {
       headers: {
         "content-type": "text/plain; charset=utf-8",
         "cache-control": "public, max-age=86400",
@@ -268,6 +283,27 @@ function seoResource(request: Request) {
       {
         headers: {
           "content-type": "application/xml; charset=utf-8",
+          "cache-control": "public, max-age=3600",
+        },
+      },
+    );
+  }
+
+  if (url.pathname === "/llms.txt") {
+    const treatmentLinks = services
+      .map(
+        (service) =>
+          `- [${service.title}](${SITE_ORIGIN}/services/${service.slug}): ${service.short}`,
+      )
+      .join("\n");
+    const doctorLinks = doctors
+      .map((doctor) => `- [${doctor.name}](${SITE_ORIGIN}/doctors/${doctor.slug}): ${doctor.role}`)
+      .join("\n");
+    return new Response(
+      `# ${clinic.businessName}\n\n> ${clinic.tagline} Dental clinic in Kalena Agrahara, Bengaluru.\n\n## Verified clinic details\n\n- Address: ${clinic.address}\n- Phone: ${clinic.phone}\n- Email: ${clinic.email}\n- Hours: Monday-Saturday 10:30-21:00; Sunday 10:30-15:30\n- Canonical website: ${SITE_ORIGIN}/\n\n## Treatments\n\n${treatmentLinks}\n\n## Dental team\n\n${doctorLinks}\n\n## Important pages\n\n- [Book an appointment](${SITE_ORIGIN}/book)\n- [Contact and directions](${SITE_ORIGIN}/contact)\n- [Before and after gallery](${SITE_ORIGIN}/gallery)\n- [Frequently asked questions](${SITE_ORIGIN}/faq)\n- [Dental journal](${SITE_ORIGIN}/blog)\n\nTreatment suitability, timelines and outcomes vary by patient and require a clinical examination.\n`,
+      {
+        headers: {
+          "content-type": "text/plain; charset=utf-8",
           "cache-control": "public, max-age=3600",
         },
       },
@@ -378,6 +414,20 @@ export default {
       if (requestUrl.pathname === "/blog/aligners-vs-braces") {
         return Response.redirect(`${SITE_ORIGIN}/blog/braces-treatment-guide`, 301);
       }
+      const serviceRedirects: Record<string, string> = {
+        "/services/preventive-care": "/services/preventive-restorations",
+        "/services/crown-bridge": "/services/crown-veneers-bridges",
+        "/services/smile-correction": "/services/teeth-whitening-cosmetic",
+        "/services/teeth-whitening": "/services/teeth-whitening-cosmetic",
+        "/services/braces": "/services/braces-aligners",
+        "/services/extractions": "/services/surgical-extraction",
+        "/services/geriatric-dentistry": "/services/check-ups",
+        "/services/gum-therapy": "/services/periodontal-gum-care",
+      };
+      const serviceRedirect = serviceRedirects[requestUrl.pathname];
+      if (serviceRedirect) {
+        return Response.redirect(`${SITE_ORIGIN}${serviceRedirect}${requestUrl.search}`, 301);
+      }
       if (requestUrl.pathname === "/api/book") {
         const env = getCloudflareEnv(request, directEnv);
         if (!env?.weldent) {
@@ -389,7 +439,7 @@ export default {
         }
         return bookAppointment(request, env);
       }
-      const resource = seoResource(request);
+      const resource = seoResource(request, getCloudflareEnv(request, directEnv)?.INDEXNOW_KEY);
       if (resource) return resource;
       const handler = await getServerEntry();
       const response = await handler.fetch(request, directEnv, ctx);

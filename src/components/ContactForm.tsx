@@ -50,7 +50,13 @@ export function ContactForm() {
           </option>
         ))}
       </select>
-      <textarea name="message" rows={5} placeholder="Your message" className={fieldClass} required />
+      <textarea
+        name="message"
+        rows={5}
+        placeholder="Your message"
+        className={fieldClass}
+        required
+      />
       <Button type="submit" size="lg" disabled={busy}>
         {busy ? "Sending…" : "Send message"}
       </Button>

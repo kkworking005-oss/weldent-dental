@@ -25,12 +25,7 @@ export function btnClass({ variant = "solid", size = "md" }: Style = {}, classNa
   return cn(base, sizes[size], variants[variant], className);
 }
 
-export function Button({
-  variant,
-  size,
-  className,
-  ...props
-}: ComponentProps<"button"> & Style) {
+export function Button({ variant, size, className, ...props }: ComponentProps<"button"> & Style) {
   return <button className={btnClass({ variant, size }, className)} {...props} />;
 }
 
@@ -98,7 +93,9 @@ export function SectionHeading({
       <div className={cn("max-w-2xl", align === "center" && "mx-auto")}>
         {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
         <h2 className="mt-4 text-[1.8rem] leading-[1.1] md:text-[2.9rem]">{title}</h2>
-        {copy ? <p className="mt-4 text-[0.95rem] leading-relaxed text-muted-foreground">{copy}</p> : null}
+        {copy ? (
+          <p className="mt-4 text-[0.95rem] leading-relaxed text-muted-foreground">{copy}</p>
+        ) : null}
       </div>
       {action}
     </div>

@@ -15,7 +15,10 @@ export const Route = createFileRoute("/testimonials")({
           "Read patient feedback about explanations, comfort, hygiene and dental treatment at Weldent Dental Clinic in Kalena Agrahara, Bengaluru.",
       },
       { property: "og:title", content: "Patient Reviews | Weldent Dental Clinic" },
-      { property: "og:description", content: "Patient experiences shared with Weldent Dental Clinic." },
+      {
+        property: "og:description",
+        content: "Patient experiences shared with Weldent Dental Clinic.",
+      },
     ],
     links: canonicalLinks("/testimonials"),
   }),
