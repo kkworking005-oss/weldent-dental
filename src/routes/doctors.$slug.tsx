@@ -1,10 +1,9 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { Award, Quote } from "lucide-react";
-import { Button, ButtonLink, Eyebrow, Panel } from "@/components/kit";
+import { Button, ButtonLink, Eyebrow } from "@/components/kit";
 import { Reveal } from "@/components/motion";
-import { ServiceCard } from "@/components/cards";
+import { DoctorCard } from "@/components/cards";
 import { useBooking } from "@/components/BookingContext";
-import { doctors, services, type Doctor } from "@/lib/site";
+import { doctors, type Doctor } from "@/lib/site";
 import { absoluteUrl, canonicalLinks, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/doctors/$slug")({
@@ -34,7 +33,8 @@ export const Route = createFileRoute("/doctors/$slug")({
 function DoctorDetail() {
   const { doctor } = Route.useLoaderData() as { doctor: Doctor };
   const booking = useBooking();
-  const treatments = services.filter((service) => service.doctors.includes(doctor.slug));
+  const isPrincipalDoctor = doctor.slug === "dr-sheetal-kumar-g";
+  const consultants = doctors.filter((candidate) => candidate.role.startsWith("Consultant"));
   const pageUrl = absoluteUrl(`/doctors/${doctor.slug}`);
   const structuredData = [
     {
@@ -121,9 +121,11 @@ function DoctorDetail() {
               ))}
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button size="lg" onClick={booking.open}>
-                Book with {doctor.name.split(" ")[1]}
-              </Button>
+              {isPrincipalDoctor ? (
+                <Button size="lg" onClick={booking.open}>
+                  Book with {doctor.name.split(" ")[1]}
+                </Button>
+              ) : null}
               <ButtonLink to="/doctors" variant="glass" size="lg">
                 All doctors
               </ButtonLink>
@@ -132,46 +134,23 @@ function DoctorDetail() {
         </div>
       </section>
 
-      <div className="shell grid gap-4 pb-5 md:gap-5 md:pb-6 md:grid-cols-2">
-        <Reveal>
-          <Panel className="h-full">
-            <Quote className="size-5 text-accent" />
-            <h2 className="mt-4 text-2xl">Philosophy</h2>
-            <p className="mt-3 font-display text-[1.5rem] leading-snug">{doctor.philosophy}</p>
-          </Panel>
-        </Reveal>
-        <Reveal delay={80}>
-          <Panel tone="quiet" className="h-full">
-            <Award className="size-5 text-primary" />
-            <h2 className="mt-4 text-2xl">
-              {doctor.memberships.length ? "Memberships" : "Consultation"}
-            </h2>
-            {doctor.memberships.length ? (
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                {doctor.memberships.map((m) => (
-                  <li key={m}>{m}</li>
-                ))}
-              </ul>
-            ) : (
-              <p className="mt-4 text-sm text-muted-foreground">
-                Contact Weldent Dental to confirm availability and treatment assignment.
-              </p>
-            )}
-          </Panel>
-        </Reveal>
-      </div>
-
-      {treatments.length ? (
-        <section className="shell py-10">
+      {isPrincipalDoctor ? (
+        <section className="shell py-10 md:py-14" aria-labelledby="consultant-dentists-heading">
           <Reveal>
-            <h2 className="text-[1.75rem] md:text-[2.6rem]">
-              Treatments {doctor.name.split(" ")[1]} handles
-            </h2>
+            <div className="max-w-2xl">
+              <Eyebrow>Our specialist team</Eyebrow>
+              <h2 id="consultant-dentists-heading" className="mt-4 text-[1.75rem] md:text-[2.6rem]">
+                Consultant Dentists
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Meet the consultant dentists who provide specialist care at Weldent Dental.
+              </p>
+            </div>
           </Reveal>
-          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {treatments.map((s, i) => (
-              <Reveal key={s.slug} delay={i * 70}>
-                <ServiceCard service={s} />
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {consultants.map((consultant, index) => (
+              <Reveal key={consultant.slug} delay={index * 70}>
+                <DoctorCard doctor={consultant} />
               </Reveal>
             ))}
           </div>
