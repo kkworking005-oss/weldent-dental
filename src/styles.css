@@ -239,26 +239,6 @@
   color: var(--primary-foreground);
 }
 
-/* Mobile screens need reliable surface contrast; keep liquid glass for desktop only. */
-@media (max-width: 767px) {
-  .glass {
-    background: oklch(0.985 0.008 225);
-    backdrop-filter: none;
-    border-color: oklch(0.9 0.015 225);
-  }
-
-  .glass-quiet {
-    background: oklch(0.97 0.012 225);
-    backdrop-filter: none;
-    border-color: oklch(0.9 0.015 225);
-  }
-
-  .glass-dark {
-    background: oklch(0.38 0.077 245);
-    backdrop-filter: none;
-  }
-}
-
 @utility glass-sheen {
   position: relative;
   overflow: hidden;
@@ -288,7 +268,7 @@
   padding-inline: 1.25rem;
 }
 
-/* Mobile: keep the same frosted-glass look as desktop, with a slightly lighter blur. */
+/* Mobile keeps the same layered liquid-glass surfaces while increasing contrast. */
 @media (max-width: 767px) {
   html {
     scroll-behavior: auto;
@@ -296,21 +276,37 @@
 
   body {
     background:
-      radial-gradient(circle at 12% 8%, rgb(160 225 224 / 0.34), transparent 32rem),
+      radial-gradient(circle at 8% 3%, rgb(155 218 232 / 0.62), transparent 31rem),
+      radial-gradient(circle at 100% 31%, rgb(191 232 225 / 0.5), transparent 29rem),
+      radial-gradient(circle at 45% 98%, rgb(166 211 240 / 0.42), transparent 32rem),
       var(--color-background);
   }
 
   .glass {
+    background: linear-gradient(
+      145deg,
+      color-mix(in oklab, white 72%, transparent),
+      color-mix(in oklab, white 42%, transparent)
+    );
     backdrop-filter: blur(20px) saturate(170%);
     -webkit-backdrop-filter: blur(20px) saturate(170%);
+    border-color: color-mix(in oklab, white 76%, transparent);
+    box-shadow: 0 1px 0 rgb(255 255 255 / 0.78) inset, 0 18px 44px -24px rgb(12 35 64 / 0.34);
   }
 
   .glass-quiet {
+    background: color-mix(in oklab, white 48%, transparent);
     backdrop-filter: blur(14px) saturate(150%);
     -webkit-backdrop-filter: blur(14px) saturate(150%);
+    border-color: color-mix(in oklab, white 65%, transparent);
   }
 
   .glass-dark {
+    background: linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--primary) 88%, transparent),
+      color-mix(in oklab, var(--primary) 68%, transparent)
+    );
     backdrop-filter: blur(20px) saturate(150%);
     -webkit-backdrop-filter: blur(20px) saturate(150%);
   }
@@ -334,6 +330,20 @@
   .site-footer {
     padding-bottom: calc(6rem + env(safe-area-inset-bottom));
   }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass {
+      background: oklch(0.975 0.012 225);
+    }
+
+    .glass-quiet {
+      background: oklch(0.96 0.015 225);
+    }
+
+    .glass-dark {
+      background: oklch(0.38 0.077 245);
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -356,29 +366,5 @@
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
-  }
-}
-
-@media (max-width: 767px) {
-  .glass,
-  .glass-quiet,
-  .glass-dark {
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
-  }
-
-  .glass {
-    background: oklch(0.985 0.008 225) !important;
-    border-color: oklch(0.9 0.015 225) !important;
-  }
-
-  .glass-quiet {
-    background: oklch(0.97 0.012 225) !important;
-    border-color: oklch(0.9 0.015 225) !important;
-  }
-
-  .glass-dark {
-    background: oklch(0.38 0.077 245) !important;
-    border-color: oklch(0.5 0.05 235) !important;
   }
 }
