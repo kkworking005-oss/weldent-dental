@@ -318,6 +318,36 @@ function Home() {
           </div>
         </Reveal>
       </section>
+
+      <section className="shell pb-10 md:pb-16" aria-labelledby="clinic-location">
+        <Reveal>
+          <div className="overflow-hidden rounded-3xl glass p-2.5 md:p-3">
+            <div className="flex flex-col gap-3 px-3 pb-4 pt-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+              <div>
+                <Eyebrow>Visit Weldent</Eyebrow>
+                <h2 id="clinic-location" className="mt-2 text-2xl md:text-3xl">
+                  Find the clinic
+                </h2>
+              </div>
+              <a
+                href={clinic.mapUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex shrink-0 items-center justify-center rounded-pill bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition hover:brightness-110"
+              >
+                Open in Google Maps
+              </a>
+            </div>
+            <iframe
+              title="Weldent Multispeciality Dental Clinic location on Google Maps"
+              src={clinic.mapEmbed}
+              className="h-72 w-full rounded-[1.25rem] border-0 sm:h-80 md:h-96"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </Reveal>
+      </section>
     </>
   );
 }
