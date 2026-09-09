@@ -9,7 +9,6 @@ import {
 import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { Toaster } from "sonner";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileActionBar, WhatsAppButton } from "@/components/FloatingActions";
@@ -131,6 +130,13 @@ export const Route = createRootRoute({
       {
         rel: "preload",
         href: "/fonts/cormorant-garamond-latin-300-normal.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        href: "/fonts/cormorant-garamond-latin-300-italic.woff2",
         as: "font",
         type: "font/woff2",
         crossOrigin: "anonymous",
@@ -290,7 +296,6 @@ function RootComponent() {
       <Footer />
       <MobileActionBar />
       <WhatsAppButton />
-      <Toaster position="top-center" />
     </BookingProvider>
   );
 }

@@ -39,15 +39,7 @@ export const Route = createFileRoute("/")({
           "Preventive, restorative and specialised dental care near Bannerghatta Road in South Bengaluru.",
       },
     ],
-    links: [
-      ...canonicalLinks("/"),
-      {
-        rel: "preload",
-        as: "image",
-        href: photos.front,
-        fetchPriority: "high",
-      },
-    ],
+    links: canonicalLinks("/"),
   }),
   component: Home,
 });
@@ -101,11 +93,13 @@ function Home() {
             <div className="relative">
               <div className="overflow-hidden rounded-3xl glass p-2.5 shadow-lift">
                 <img
-                  src={photos.front}
+                  src="/images/clinic-front-768.webp"
+                  srcSet="/images/clinic-front-480.webp 480w, /images/clinic-front-768.webp 768w, /images/clinic-front.webp 1448w"
+                  sizes="(max-width: 1023px) calc(100vw - 40px), 45vw"
                   width="1448"
                   height="1086"
+                  loading="lazy"
                   decoding="async"
-                  fetchPriority="high"
                   alt="Weldent Dental Clinic shopfront in Kalena Agrahara, Bengaluru"
                   className="aspect-4/3 w-full rounded-2xl object-cover"
                 />

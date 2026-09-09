@@ -21,7 +21,7 @@ export function getServiceImage(service: Pick<Service, "slug">) {
 
 export function getServiceImageSrcSet(service: Pick<Service, "slug">) {
   const source = getServiceImage(service).replace(/\.webp$/, "");
-  return `${source}-480.webp 480w, ${source}-768.webp 768w, ${source}.webp 1200w`;
+  return `${source}-480.webp 480w, ${source}-640.webp 640w, ${source}-768.webp 768w, ${source}.webp 1200w`;
 }
 
 export function getServiceImageAlt(service: Pick<Service, "title">) {

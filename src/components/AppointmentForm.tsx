@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { toast } from "sonner";
+import { Toaster, toast } from "sonner";
 import { z } from "zod";
 import { Check } from "lucide-react";
 import { Button } from "@/components/kit";
@@ -104,94 +104,100 @@ export function AppointmentForm({ className }: { className?: string }) {
 
   if (confirmation) {
     return (
-      <div
-        role="status"
-        aria-live="polite"
-        className={cn(
-          "booking-confirmation grid min-h-80 place-items-center text-center",
-          className,
-        )}
-      >
-        <div className="w-full max-w-sm">
-          <div className="booking-confirmation-icon mx-auto grid size-20 place-items-center rounded-full bg-primary text-primary-foreground shadow-lift">
-            <Check className="size-9" strokeWidth={2.5} />
+      <>
+        <Toaster position="top-center" />
+        <div
+          role="status"
+          aria-live="polite"
+          className={cn(
+            "booking-confirmation grid min-h-80 place-items-center text-center",
+            className,
+          )}
+        >
+          <div className="w-full max-w-sm">
+            <div className="booking-confirmation-icon mx-auto grid size-20 place-items-center rounded-full bg-primary text-primary-foreground shadow-lift">
+              <Check className="size-9" strokeWidth={2.5} />
+            </div>
+            <h3 className="mt-6 text-3xl">Booking received</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Your appointment request has been saved. WhatsApp will open in{" "}
+              <strong className="text-foreground">{confirmation.secondsRemaining} seconds</strong>{" "}
+              so you can send the confirmation message.
+            </p>
+            <div className="booking-confirmation-progress mt-6 h-1.5 overflow-hidden rounded-full bg-primary/10">
+              <span className="block h-full rounded-full bg-primary" />
+            </div>
+            <Button
+              type="button"
+              variant="glass"
+              className="mt-6"
+              onClick={() => window.location.assign(confirmation.whatsappURL)}
+            >
+              Continue to WhatsApp now
+            </Button>
           </div>
-          <h3 className="mt-6 text-3xl">Booking received</h3>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            Your appointment request has been saved. WhatsApp will open in{" "}
-            <strong className="text-foreground">{confirmation.secondsRemaining} seconds</strong> so
-            you can send the confirmation message.
-          </p>
-          <div className="booking-confirmation-progress mt-6 h-1.5 overflow-hidden rounded-full bg-primary/10">
-            <span className="block h-full rounded-full bg-primary" />
-          </div>
-          <Button
-            type="button"
-            variant="glass"
-            className="mt-6"
-            onClick={() => window.location.assign(confirmation.whatsappURL)}
-          >
-            Continue to WhatsApp now
-          </Button>
         </div>
-      </div>
+      </>
     );
   }
 
   return (
-    <form onSubmit={submit} className={cn("grid gap-3", className)}>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <input name="name" placeholder="Full name" className={fieldClass} required />
-        <input name="phone" placeholder="Phone number" className={fieldClass} required />
-      </div>
-      <input name="email" type="email" placeholder="Email (optional)" className={fieldClass} />
-      <div className="grid gap-3 sm:grid-cols-2">
-        <select name="treatment" className={fieldClass} defaultValue="">
-          <option value="">Treatment of interest</option>
-          {services.map((s) => (
-            <option key={s.slug} value={s.title}>
-              {s.title}
-            </option>
-          ))}
-        </select>
-        <select name="doctor" className={fieldClass} defaultValue="">
-          <option value="">Preferred doctor</option>
-          {doctors.map((d) => (
-            <option key={d.slug} value={d.name}>
-              {d.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <input
-          name="preferred_date"
-          type="date"
+    <>
+      <Toaster position="top-center" />
+      <form onSubmit={submit} className={cn("grid gap-3", className)}>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <input name="name" placeholder="Full name" className={fieldClass} required />
+          <input name="phone" placeholder="Phone number" className={fieldClass} required />
+        </div>
+        <input name="email" type="email" placeholder="Email (optional)" className={fieldClass} />
+        <div className="grid gap-3 sm:grid-cols-2">
+          <select name="treatment" className={fieldClass} defaultValue="">
+            <option value="">Treatment of interest</option>
+            {services.map((s) => (
+              <option key={s.slug} value={s.title}>
+                {s.title}
+              </option>
+            ))}
+          </select>
+          <select name="doctor" className={fieldClass} defaultValue="">
+            <option value="">Preferred doctor</option>
+            {doctors.map((d) => (
+              <option key={d.slug} value={d.name}>
+                {d.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <input
+            name="preferred_date"
+            type="date"
+            className={fieldClass}
+            aria-label="Preferred date"
+          />
+          <select name="preferred_time" className={fieldClass} defaultValue="">
+            <option value="">Preferred time</option>
+            {times.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+        </div>
+        <textarea
+          name="notes"
+          rows={3}
+          placeholder="Anything we should know?"
           className={fieldClass}
-          aria-label="Preferred date"
         />
-        <select name="preferred_time" className={fieldClass} defaultValue="">
-          <option value="">Preferred time</option>
-          {times.map((t) => (
-            <option key={t} value={t}>
-              {t}
-            </option>
-          ))}
-        </select>
-      </div>
-      <textarea
-        name="notes"
-        rows={3}
-        placeholder="Anything we should know?"
-        className={fieldClass}
-      />
-      <Button type="submit" size="lg" disabled={busy} className="mt-1">
-        {busy ? "Sending…" : "Request appointment"}
-      </Button>
-      <p className="text-xs text-muted-foreground">
-        Your details are saved and a prefilled WhatsApp message opens so the clinic can confirm your
-        slot. For emergencies, please call directly.
-      </p>
-    </form>
+        <Button type="submit" size="lg" disabled={busy} className="mt-1">
+          {busy ? "Sending…" : "Request appointment"}
+        </Button>
+        <p className="text-xs text-muted-foreground">
+          Your details are saved and a prefilled WhatsApp message opens so the clinic can confirm
+          your slot. For emergencies, please call directly.
+        </p>
+      </form>
+    </>
   );
 }

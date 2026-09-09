@@ -31,7 +31,7 @@ export function Footer() {
 
             <div className="grid grid-cols-2 gap-6 md:contents">
               <div>
-                <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                   Explore
                 </h3>
                 <ul className="mt-3 space-y-1.5 text-[13px] text-muted-foreground md:mt-4 md:space-y-2 md:text-sm">
@@ -50,7 +50,7 @@ export function Footer() {
               </div>
 
               <div>
-                <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                   Treatments
                 </h3>
                 <ul className="mt-3 space-y-1.5 text-[13px] text-muted-foreground md:mt-4 md:space-y-2 md:text-sm">
@@ -70,7 +70,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                 Visit us
               </h3>
               <ul className="mt-3 space-y-2 text-[13px] text-muted-foreground md:mt-4 md:space-y-3 md:text-sm">

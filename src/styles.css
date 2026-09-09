@@ -50,25 +50,9 @@
 
 @font-face {
   font-family: "Plus Jakarta Sans";
-  src: url("/fonts/plus-jakarta-sans-latin-500-normal.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Plus Jakarta Sans";
   src: url("/fonts/plus-jakarta-sans-latin-600-normal.woff2") format("woff2");
   font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Plus Jakarta Sans";
-  src: url("/fonts/plus-jakarta-sans-latin-700-normal.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 700;
+  font-weight: 500 700;
   font-display: swap;
 }
 
@@ -344,5 +328,22 @@
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+  .site-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .glass,
+  .glass-quiet,
+  .glass-dark {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 }

@@ -20,7 +20,6 @@ export function Reveal({
       typeof IntersectionObserver === "undefined" ||
       window.matchMedia("(max-width: 767px), (prefers-reduced-motion: reduce)").matches
     ) {
-      setShown(true);
       return;
     }
     // Fail-safe: never leave content hidden for long.
@@ -44,7 +43,7 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      className={cn("transition-all duration-[450ms] ease-out", className)}
+      className={cn("site-reveal transition-all duration-[450ms] ease-out", className)}
       style={{
         opacity: shown ? 1 : 0,
         transform: shown ? "none" : "translateY(14px)",

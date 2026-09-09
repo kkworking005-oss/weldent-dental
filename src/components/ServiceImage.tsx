@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import type { Service } from "@/lib/site";
 import { getServiceImage, getServiceImageAlt, getServiceImageSrcSet } from "@/lib/service-images";
 import { cn } from "@/lib/utils";
@@ -14,19 +13,10 @@ export function ServiceImage({
   priority?: boolean;
   sizes?: string;
 }) {
-  const [loaded, setLoaded] = useState(false);
-  const imageRef = useRef<HTMLImageElement>(null);
   const source = getServiceImage(service);
-
-  useEffect(() => {
-    setLoaded(false);
-    const image = imageRef.current;
-    if (image?.complete && image.naturalWidth > 0) setLoaded(true);
-  }, [source]);
 
   return (
     <img
-      ref={imageRef}
       src={source}
       srcSet={getServiceImageSrcSet(service)}
       sizes={sizes}
@@ -36,13 +26,7 @@ export function ServiceImage({
       loading={priority ? "eager" : "lazy"}
       fetchPriority={priority ? "high" : "auto"}
       decoding="async"
-      onLoad={() => setLoaded(true)}
-      onError={() => setLoaded(true)}
-      className={cn(
-        "opacity-0 transition-[opacity,transform] duration-700 ease-out",
-        loaded && "opacity-100",
-        className,
-      )}
+      className={cn("transition-transform duration-700 ease-out", className)}
     />
   );
 }
