@@ -53,7 +53,7 @@ function AboutPage() {
 
       <section className="shell py-8">
         <Reveal>
-          <Panel tone="dark" className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <Panel tone="dark" className="grid gap-8 sm:grid-cols-2">
             {stats.map((s) => (
               <div key={s.label}>
                 <p className="font-display text-[2.7rem] leading-none">

@@ -10,8 +10,6 @@ export const photos = {
 export const stats = [
   { value: getYearsOfExperience(), suffix: "+", label: "Years of clinical experience" },
   { value: getSmilesTreated(), suffix: "+", label: "Smiles treated" },
-  { value: 15, suffix: "", label: "Clinical cases shown" },
-  { value: 7, suffix: "", label: "Days open a week" },
 ];
 
 export type Service = {

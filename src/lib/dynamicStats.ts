@@ -1,13 +1,14 @@
 const EXPERIENCE_START_YEAR = 2023;
 const SMILES_BASE_YEAR = 2023;
-const SMILES_PER_YEAR = 500;
+const SMILES_AT_START = 500;
+const ADDITIONAL_SMILES_PER_YEAR = 500;
 
-export function getYearsOfExperience(): number {
-  return new Date().getFullYear() - EXPERIENCE_START_YEAR;
+export function getYearsOfExperience(currentYear = new Date().getFullYear()): number {
+  return currentYear - EXPERIENCE_START_YEAR;
 }
 
-export function getSmilesTreated(): number {
-  return SMILES_PER_YEAR * (new Date().getFullYear() - SMILES_BASE_YEAR + 1);
+export function getSmilesTreated(currentYear = new Date().getFullYear()): number {
+  return SMILES_AT_START + (currentYear - SMILES_BASE_YEAR) * ADDITIONAL_SMILES_PER_YEAR;
 }
 
 export function getCurrentYear(): number {

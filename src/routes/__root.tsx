@@ -13,6 +13,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileActionBar, WhatsAppButton } from "@/components/FloatingActions";
 import { BookingProvider } from "@/components/BookingContext";
+import { getSmilesTreated, getYearsOfExperience } from "@/lib/dynamicStats";
 import { clinic, serviceNav } from "@/lib/site-core";
 import { absoluteUrl, SITE_URL } from "@/lib/seo";
 
@@ -207,6 +208,19 @@ function RootShell({ children }: { children: ReactNode }) {
                   telephone: clinic.phoneHref.replace("tel:", ""),
                   email: clinic.email,
                   currenciesAccepted: "INR",
+                  additionalProperty: [
+                    {
+                      "@type": "PropertyValue",
+                      name: "Years of clinical experience",
+                      value: getYearsOfExperience(),
+                      unitText: "years",
+                    },
+                    {
+                      "@type": "PropertyValue",
+                      name: "Smiles treated",
+                      value: getSmilesTreated(),
+                    },
+                  ],
                   address: {
                     "@type": "PostalAddress",
                     streetAddress: clinic.streetAddress,
