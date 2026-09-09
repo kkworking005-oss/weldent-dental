@@ -3,7 +3,7 @@ import { Toaster, toast } from "sonner";
 import { z } from "zod";
 import { Check } from "lucide-react";
 import { Button } from "@/components/kit";
-import { clinic, services, doctors } from "@/lib/site";
+import { clinic, services } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const schema = z.object({
@@ -12,10 +12,10 @@ const schema = z.object({
   email: z
     .union([z.string().trim().email("Enter a valid email").max(160), z.literal("")])
     .optional(),
-  treatment: z.string().max(80),
-  doctor: z.string().max(80),
-  preferred_date: z.string().max(20),
-  preferred_time: z.string().max(40),
+  treatment: z.string().max(80).optional(),
+  doctor: z.literal("Dr. Sheetal Kumar G"),
+  preferred_date: z.string().min(1, "Please choose a date").max(20),
+  preferred_time: z.string().min(1, "Please choose a time").max(40),
   notes: z.string().trim().max(600).optional(),
 });
 
@@ -24,7 +24,6 @@ export const fieldClass =
 
 const times = ["Morning (10:30–12:30)", "Afternoon (12:30–4:30)", "Evening (4:30–9:00)"];
 const onlyDoctor = "Dr. Sheetal Kumar G";
-const bookingDoctors = doctors.filter((d) => d.name === onlyDoctor);
 
 export function AppointmentForm({ className }: { className?: string }) {
   const [busy, setBusy] = useState(false);
@@ -149,7 +148,14 @@ export function AppointmentForm({ className }: { className?: string }) {
       <form onSubmit={submit} className={cn("grid gap-3", className)}>
         <div className="grid gap-3 sm:grid-cols-2">
           <input name="name" placeholder="Full name" className={fieldClass} required />
-          <input name="phone" placeholder="Phone number" className={fieldClass} required />
+          <input
+            name="phone"
+            type="tel"
+            inputMode="tel"
+            placeholder="Phone number"
+            className={fieldClass}
+            required
+          />
         </div>
         <input name="email" type="email" placeholder="Email (optional)" className={fieldClass} />
         <div className="grid gap-3 sm:grid-cols-2">
@@ -161,33 +167,26 @@ export function AppointmentForm({ className }: { className?: string }) {
               </option>
             ))}
           </select>
-          <select
-            name="doctor"
-            className={fieldClass}
-            defaultValue={onlyDoctor}
-            aria-label="Doctor"
-            disabled={bookingDoctors.length === 1}
+          <div
+            className={`${fieldClass} flex items-center bg-white/40`}
+            aria-label="Assigned dentist"
           >
-            {bookingDoctors.length > 0 ? (
-              bookingDoctors.map((d) => (
-                <option key={d.slug} value={d.name}>
-                  {d.name}
-                </option>
-              ))
-            ) : (
-              <option value={onlyDoctor}>{onlyDoctor}</option>
-            )}
-          </select>
+            Dr. Sheetal Kumar G
+          </div>
+          <input name="doctor" type="hidden" value={onlyDoctor} />
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
           <input
             name="preferred_date"
             type="date"
-            className={fieldClass}
-            aria-label="Preferred date"
+            className={`${fieldClass} booking-date`}
+            aria-label="Preferred date (required)"
+            required
           />
-          <select name="preferred_time" className={fieldClass} defaultValue="">
-            <option value="">Preferred time</option>
+          <select name="preferred_time" className={fieldClass} defaultValue="" required>
+            <option value="" disabled>
+              Preferred time
+            </option>
             {times.map((t) => (
               <option key={t} value={t}>
                 {t}
