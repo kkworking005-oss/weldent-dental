@@ -1,0 +1,28 @@
+name: Submit deployed URLs to IndexNow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    if: github.repository == 'sheetalkumarg1-droid/weldent-dental'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Wait for the Cloudflare deployment
+        run: sleep 180
+
+      - name: Submit production sitemap URLs
+        run: node scripts/submit-indexnow.mjs
