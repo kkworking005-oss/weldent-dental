@@ -131,6 +131,13 @@ export const Route = createRootRoute({
       },
       {
         rel: "preload",
+        href: "/fonts/plus-jakarta-sans-latin-600-normal.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "preload",
         href: "/fonts/cormorant-garamond-latin-300-normal.woff2",
         as: "font",
         type: "font/woff2",
