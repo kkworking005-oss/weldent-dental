@@ -24,25 +24,19 @@ export function HeroCarousel({ images }: { images: readonly HeroImage[] }) {
       role="region"
       aria-label="Weldent Dental Clinic photographs"
     >
-      {images.map((image, index) => (
-        <img
-          key={image.src}
-          src={image.src}
-          srcSet={image.srcSet}
-          sizes="(max-width: 1023px) calc(100vw - 40px), 45vw"
-          width="1200"
-          height="900"
-          loading={index === 0 ? "eager" : "lazy"}
-          fetchPriority={index === 0 ? "high" : "auto"}
-          decoding="async"
-          alt={image.alt}
-          className={cn(
-            "absolute inset-0 size-full object-cover transition-opacity duration-700",
-            index === active ? "opacity-100" : "pointer-events-none opacity-0",
-          )}
-          aria-hidden={index !== active}
-        />
-      ))}
+      <img
+        key={images[active]!.src}
+        src={images[active]!.src}
+        srcSet={images[active]!.srcSet}
+        sizes="(max-width: 1023px) calc(100vw - 40px), 45vw"
+        width="1200"
+        height="900"
+        loading="eager"
+        fetchPriority={active === 0 ? "high" : "auto"}
+        decoding="async"
+        alt={images[active]!.alt}
+        className="absolute inset-0 size-full animate-[carousel-fade_500ms_ease-out] object-cover"
+      />
       <div
         className="absolute inset-x-0 bottom-3 flex justify-center gap-2"
         aria-label="Choose clinic photograph"
@@ -54,11 +48,15 @@ export function HeroCarousel({ images }: { images: readonly HeroImage[] }) {
             onClick={() => setActive(index)}
             aria-label={`Show clinic photograph ${index + 1}`}
             aria-current={index === active ? "true" : undefined}
-            className={cn(
-              "h-2 rounded-full shadow-sm transition-all",
-              index === active ? "w-6 bg-white" : "w-2 bg-white/65 hover:bg-white",
-            )}
-          />
+            className="grid size-7 place-items-center rounded-pill transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            <span
+              className={cn(
+                "h-2 rounded-full shadow-sm transition-all",
+                index === active ? "w-6 bg-white" : "w-2 bg-white/65 hover:bg-white",
+              )}
+            />
+          </button>
         ))}
       </div>
     </div>
