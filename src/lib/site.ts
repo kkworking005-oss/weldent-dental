@@ -114,9 +114,9 @@ export const doctors: Doctor[] = [
   {
     slug: "dr-lakshmi-bhardawaj",
     name: "Dr. Lakshmi Bhardawaj",
-    role: "Consultant Dental Surgeon",
-    qualifications: "BDS",
-    specialties: ["General dental consultation", "Preventive and restorative dental care"],
+    role: "Consultant Oral & Maxillofacial Surgeon",
+    qualifications: "BDS · MDS in Oral and Maxillofacial Surgery",
+    specialties: ["Oral and Maxillofacial Surgery"],
     photo: "/images/doctors/dr-lakshmi-bhardawaj.webp",
     bio: [
       "Dr. Lakshmi Bhardawaj is a consultant dental surgeon at Weldent Multispeciality Dental Clinic. Please contact the clinic to confirm consultation availability and treatment assignment.",
@@ -128,9 +128,9 @@ export const doctors: Doctor[] = [
   {
     slug: "dr-karthik-p",
     name: "Dr. Karthik P",
-    role: "Consultant Dentist",
-    qualifications: "Consultant dentist",
-    specialties: ["General dental consultation"],
+    role: "Consultant Orthodontist",
+    qualifications: "BDS · MDS in Orthodontics and Dentofacial Orthopedics",
+    specialties: ["Orthodontic braces and aligners"],
     photo: "/images/doctors/dr-karthik-p.webp",
     bio: [
       "Dr. Karthik P consults at Weldent Multispeciality Dental Clinic. Please contact the clinic to confirm consultation availability and treatment assignment.",
@@ -142,9 +142,9 @@ export const doctors: Doctor[] = [
   {
     slug: "dr-niharika-k-g",
     name: "Dr. Niharika K G",
-    role: "Consultant Dentist",
-    qualifications: "Consultant dentist",
-    specialties: ["General dental consultation"],
+    role: "Consultant Periodontist & Implantologist",
+    qualifications: "BDS · MDS in Periodontology and Oral Implantology",
+    specialties: ["Periodontal gum care", "Dental implants"],
     photo: "/images/doctors/dr-niharika-k-g.webp",
     bio: [
       "Dr. Niharika K G consults at Weldent Multispeciality Dental Clinic. Please contact the clinic to confirm consultation availability and treatment assignment.",
