@@ -24,14 +24,61 @@ export const fieldClass =
 
 const onlyDoctor = "Dr. Sheetal Kumar G";
 
+type TimeSlot = {
+  value: string;
+  label: string;
+};
+
+function formatTimeLabel(totalMinutes: number) {
+  const hour24 = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  const hour12 = hour24 % 12 || 12;
+  const period = hour24 >= 12 ? "PM" : "AM";
+  return `${hour12}:${String(minutes).padStart(2, "0")} ${period}`;
+}
+
+function createTimeSlots(lastMinute: number): TimeSlot[] {
+  const firstMinute = 10 * 60 + 30;
+  const slots: TimeSlot[] = [];
+
+  for (let minute = firstMinute; minute <= lastMinute; minute += 15) {
+    slots.push({
+      value: `${String(Math.floor(minute / 60)).padStart(2, "0")}:${String(minute % 60).padStart(2, "0")}`,
+      label: formatTimeLabel(minute),
+    });
+  }
+
+  return slots;
+}
+
+const weekdayTimeSlots = createTimeSlots(21 * 60);
+const sundayTimeSlots = createTimeSlots(15 * 60 + 30);
+
+function isSunday(date: string) {
+  if (!date) return false;
+  const [year, month, day] = date.split("-");
+  if (!year || !month || !day) return false;
+  return new Date(Number(year), Number(month) - 1, Number(day)).getDay() === 0;
+}
+
+function localToday() {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+}
+
 export function AppointmentForm({ className }: { className?: string }) {
   const [busy, setBusy] = useState(false);
   const [preferredDate, setPreferredDate] = useState("");
   const [preferredTime, setPreferredTime] = useState("");
+  const [minimumDate, setMinimumDate] = useState("");
   const [confirmation, setConfirmation] = useState<{
     whatsappURL: string;
     secondsRemaining: number;
   } | null>(null);
+
+  useEffect(() => {
+    setMinimumDate(localToday());
+  }, []);
 
   useEffect(() => {
     if (!confirmation) return;
@@ -48,6 +95,16 @@ export function AppointmentForm({ className }: { className?: string }) {
 
     return () => window.clearTimeout(timer);
   }, [confirmation]);
+
+  const timeSlots = isSunday(preferredDate) ? sundayTimeSlots : weekdayTimeSlots;
+
+  function updatePreferredDate(nextDate: string) {
+    setPreferredDate(nextDate);
+    const nextSlots = isSunday(nextDate) ? sundayTimeSlots : weekdayTimeSlots;
+    if (preferredTime && !nextSlots.some((slot) => slot.value === preferredTime)) {
+      setPreferredTime("");
+    }
+  }
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -184,7 +241,8 @@ export function AppointmentForm({ className }: { className?: string }) {
               name="preferred_date"
               type="date"
               value={preferredDate}
-              onChange={(event) => setPreferredDate(event.target.value)}
+              onChange={(event) => updatePreferredDate(event.target.value)}
+              min={minimumDate || undefined}
               className={`${fieldClass} booking-date`}
               aria-label="Preferred date (required)"
               required
@@ -195,24 +253,24 @@ export function AppointmentForm({ className }: { className?: string }) {
               </span>
             ) : null}
           </div>
-          <div className="relative">
-            <input
+          <div>
+            <select
               name="preferred_time"
-              type="time"
               value={preferredTime}
               onChange={(event) => setPreferredTime(event.target.value)}
-              min="10:30"
-              max="21:00"
-              step="900"
-              className={`${fieldClass} booking-time`}
+              className={`${fieldClass} booking-time-select`}
               aria-label="Preferred appointment time (required)"
               required
-            />
-            {!preferredTime ? (
-              <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-sm font-medium text-black">
+            >
+              <option value="" disabled>
                 TIME
-              </span>
-            ) : null}
+              </option>
+              {timeSlots.map((slot) => (
+                <option key={slot.value} value={slot.value}>
+                  {slot.label}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <textarea

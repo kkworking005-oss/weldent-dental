@@ -50,17 +50,21 @@
   animation: booking-progress 2s linear forwards;
 }
 
-/* Keep the native date/time controls, but replace their inconsistent empty hints. */
-.booking-date:invalid,
-.booking-time:invalid {
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-
-.booking-date:valid,
-.booking-time:valid {
+/* Values must remain readable even when native validation marks a field invalid. */
+.booking-date,
+.booking-time-select {
   color: var(--color-foreground);
   -webkit-text-fill-color: var(--color-foreground);
+}
+
+.booking-time-select {
+  min-height: 3.125rem;
+  color-scheme: light;
+}
+
+.booking-time-select option {
+  color: var(--color-foreground);
+  background: white;
 }
 
 @media (prefers-reduced-motion: reduce) {
