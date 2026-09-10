@@ -27,6 +27,7 @@ const onlyDoctor = "Dr. Sheetal Kumar G";
 export function AppointmentForm({ className }: { className?: string }) {
   const [busy, setBusy] = useState(false);
   const [preferredDate, setPreferredDate] = useState("");
+  const [preferredTime, setPreferredTime] = useState("");
   const [confirmation, setConfirmation] = useState<{
     whatsappURL: string;
     secondsRemaining: number;
@@ -93,6 +94,7 @@ export function AppointmentForm({ className }: { className?: string }) {
       toast.success("Booking received. Opening WhatsApp in 2 seconds.");
       form.reset();
       setPreferredDate("");
+      setPreferredTime("");
       setConfirmation({ whatsappURL, secondsRemaining: 2 });
     } catch (error) {
       console.error("Appointment booking failed", error);
@@ -177,25 +179,41 @@ export function AppointmentForm({ className }: { className?: string }) {
           <input name="doctor" type="hidden" value={onlyDoctor} />
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
-          <input
-            name="preferred_date"
-            type="date"
-            value={preferredDate}
-            onChange={(event) => setPreferredDate(event.target.value)}
-            className={`${fieldClass} booking-date`}
-            aria-label="Preferred date (required)"
-            required
-          />
-          <input
-            name="preferred_time"
-            type="time"
-            min="10:30"
-            max="21:00"
-            step="900"
-            className={`${fieldClass} booking-time`}
-            aria-label="Preferred appointment time (required)"
-            required
-          />
+          <div className="relative">
+            <input
+              name="preferred_date"
+              type="date"
+              value={preferredDate}
+              onChange={(event) => setPreferredDate(event.target.value)}
+              className={`${fieldClass} booking-date`}
+              aria-label="Preferred date (required)"
+              required
+            />
+            {!preferredDate ? (
+              <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-sm font-medium text-black">
+                DATE
+              </span>
+            ) : null}
+          </div>
+          <div className="relative">
+            <input
+              name="preferred_time"
+              type="time"
+              value={preferredTime}
+              onChange={(event) => setPreferredTime(event.target.value)}
+              min="10:30"
+              max="21:00"
+              step="900"
+              className={`${fieldClass} booking-time`}
+              aria-label="Preferred appointment time (required)"
+              required
+            />
+            {!preferredTime ? (
+              <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-sm font-medium text-black">
+                TIME
+              </span>
+            ) : null}
+          </div>
         </div>
         <textarea
           name="notes"

@@ -50,6 +50,19 @@
   animation: booking-progress 2s linear forwards;
 }
 
+/* Keep the native date/time controls, but replace their inconsistent empty hints. */
+.booking-date:invalid,
+.booking-time:invalid {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.booking-date:valid,
+.booking-time:valid {
+  color: var(--color-foreground);
+  -webkit-text-fill-color: var(--color-foreground);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .booking-confirmation-icon,
   .booking-confirmation-progress span,
