@@ -261,6 +261,7 @@ const galleryCases = [
     title: "Cosmetic Anterior Crowns",
     category: "Cosmetic",
     note: "Restoration of broken upper front teeth using custom-matched ceramic crowns to improve smile aesthetics.",
+    swapImages: true,
   },
   {
     id: "12p",
