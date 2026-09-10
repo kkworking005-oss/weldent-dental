@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 export function BeforeAfter({
   before,
@@ -6,12 +7,16 @@ export function BeforeAfter({
   alt,
   beforeSrcSet,
   afterSrcSet,
+  beforeImageClassName,
+  afterImageClassName,
 }: {
   before: string;
   after: string;
   alt: string;
   beforeSrcSet?: string;
   afterSrcSet?: string;
+  beforeImageClassName?: string | undefined;
+  afterImageClassName?: string | undefined;
 }) {
   const [pos, setPos] = useState(52);
   const ref = useRef<HTMLDivElement>(null);
@@ -39,7 +44,7 @@ export function BeforeAfter({
         decoding="async"
         width={768}
         height={576}
-        className="absolute inset-0 size-full object-cover"
+        className={cn("absolute inset-0 size-full object-cover", afterImageClassName)}
       />
       <img
         src={before}
@@ -50,7 +55,7 @@ export function BeforeAfter({
         decoding="async"
         width={768}
         height={576}
-        className="absolute inset-0 size-full object-cover"
+        className={cn("absolute inset-0 size-full object-cover", beforeImageClassName)}
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
       />
       <div

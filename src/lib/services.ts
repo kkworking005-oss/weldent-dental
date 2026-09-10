@@ -1,6 +1,6 @@
 import type { Service } from "@/lib/site";
 
-const dateModified = "2026-09-09";
+const dateModified = "2026-09-10";
 const standardAftercare = [
   "Follow the personalised instructions given after your appointment",
   "Maintain gentle brushing and interdental cleaning as advised",

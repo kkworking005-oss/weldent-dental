@@ -172,6 +172,8 @@ const galleryCases = [
     title: "Deep Scaling and Gum Care",
     category: "Gum Care",
     note: "Deep professional cleaning and gum-care treatment planned to remove deposits and support healthier gums.",
+    beforeImageClassName: "origin-center rotate-90 scale-[1.35]",
+    afterImageClassName: "origin-center rotate-90 scale-[1.35]",
   },
   {
     id: "add-3",
@@ -190,6 +192,7 @@ const galleryCases = [
     title: "Laser Crown Exposure",
     category: "Restorative",
     note: "A minimally invasive laser procedure performed to safely expose a submerged front tooth, facilitating proper eruption and clinical function.",
+    swapImages: true,
   },
   {
     id: "1p",
@@ -202,6 +205,8 @@ const galleryCases = [
     title: "Tooth Extraction",
     category: "Surgical",
     note: "Surgical removal of a severely decayed and structurally compromised lower molar.",
+    beforeImageClassName: "origin-[72%_55%] scale-[1.85]",
+    afterImageClassName: "origin-[68%_55%] scale-[1.85]",
   },
   {
     id: "3p",
@@ -277,14 +282,21 @@ const galleryCases = [
   },
 ];
 
-export const cases = galleryCases.map((c) => ({
-  ...c,
-  doctor: "Dr. Sheetal Kumar G",
-  before: `/images/gallery/${c.id}-before-768.webp`,
-  after: `/images/gallery/${c.id}-after-768.webp`,
-  beforeSrcSet: responsiveImageSet(`gallery/${c.id}-before`),
-  afterSrcSet: responsiveImageSet(`gallery/${c.id}-after`),
-}));
+export const cases = galleryCases.map((c) => {
+  const before = `/images/gallery/${c.id}-before-768.webp`;
+  const after = `/images/gallery/${c.id}-after-768.webp`;
+  const beforeSrcSet = responsiveImageSet(`gallery/${c.id}-before`);
+  const afterSrcSet = responsiveImageSet(`gallery/${c.id}-after`);
+
+  return {
+    ...c,
+    doctor: "Dr. Sheetal Kumar G",
+    before: c.swapImages ? after : before,
+    after: c.swapImages ? before : after,
+    beforeSrcSet: c.swapImages ? afterSrcSet : beforeSrcSet,
+    afterSrcSet: c.swapImages ? beforeSrcSet : afterSrcSet,
+  };
+});
 
 export const testimonials = [
   {

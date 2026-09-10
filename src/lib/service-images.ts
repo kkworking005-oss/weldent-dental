@@ -10,8 +10,8 @@ const serviceImages: Record<string, string> = {
   "teeth-whitening-cosmetic": "/images/services/s6.webp",
   dentures: "/images/services/s7.webp",
   "dental-implants": "/images/services/s8.webp",
-  "braces-aligners": "/images/services/s9.webp",
-  "surgical-extraction": "/images/services/s10.webp",
+  "braces-aligners": "/images/services/orthodontic-braces-aligners.webp",
+  "surgical-extraction": "/images/services/surgical-extraction.webp",
   "pediatric-dentistry": "/images/services/pediatric dentistry and child care.webp",
   "periodontal-gum-care": "/images/services/s2.webp",
   "laser-dentistry": "/images/services/Laser.webp",
@@ -24,7 +24,7 @@ export function getServiceImage(service: Pick<Service, "slug">) {
 export function getServiceImageSrcSet(service: Pick<Service, "slug">) {
   const source = getServiceImage(service);
 
-  if (!source.includes("/images/services/s") && !source.includes("/images/services/s")) {
+  if (!/\/images\/services\/s\d+\.webp$/.test(source)) {
     return `${source} 1200w`;
   }
 

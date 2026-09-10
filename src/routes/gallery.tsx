@@ -73,6 +73,8 @@ function GalleryPage() {
                   after={c.after}
                   beforeSrcSet={c.beforeSrcSet}
                   afterSrcSet={c.afterSrcSet}
+                  beforeImageClassName={c.beforeImageClassName}
+                  afterImageClassName={c.afterImageClassName}
                   alt={c.title}
                 />
                 <div className="flex flex-wrap items-start justify-between gap-2 px-3 py-4">

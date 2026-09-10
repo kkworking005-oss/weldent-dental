@@ -215,11 +215,6 @@ function Home() {
             eyebrow="Results"
             title="Before and after, unretouched"
             copy="Drag the handle to compare treatment photographs shared by Weldent Dental. Individual results vary."
-            action={
-              <ButtonLink to="/gallery" variant="glass">
-                View all Before & After
-              </ButtonLink>
-            }
           />
         </Reveal>
         <div className="mt-10 grid gap-5 md:grid-cols-2">
@@ -245,9 +240,9 @@ function Home() {
             </Reveal>
           ))}
         </div>
-        <div className="mt-6 flex justify-center">
+        <div className="mt-6 flex justify-center md:mt-8">
           <ButtonLink to="/gallery" variant="glass">
-            View all Before & After
+            Full gallery
           </ButtonLink>
         </div>
       </section>
