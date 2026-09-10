@@ -92,9 +92,13 @@ export function SectionHeading({
     >
       <div className={cn("max-w-2xl", align === "center" && "mx-auto")}>
         {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-        <h2 className="mt-4 text-[1.8rem] leading-[1.1] md:text-[2.9rem]">{title}</h2>
+        <h2 className="mt-4 text-[clamp(1.8rem,3vw,3rem)] font-black leading-[0.96] tracking-[-0.05em] text-foreground">
+          {title}
+        </h2>
         {copy ? (
-          <p className="mt-4 text-[0.95rem] leading-relaxed text-muted-foreground">{copy}</p>
+          <p className="mt-4 text-sm font-medium leading-snug text-foreground/75">
+            {copy}
+          </p>
         ) : null}
       </div>
       {action}

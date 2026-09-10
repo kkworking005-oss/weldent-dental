@@ -217,7 +217,7 @@ function Home() {
             copy="Drag the handle to compare treatment photographs shared by Weldent Dental. Individual results vary."
             action={
               <ButtonLink to="/gallery" variant="glass">
-                Full gallery
+                View all Before & After
               </ButtonLink>
             }
           />
@@ -234,12 +234,21 @@ function Home() {
                   alt={c.title}
                 />
                 <div className="px-3 py-4">
-                  <h3 className="text-xl">{c.title}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{c.note}</p>
+                  <h3 className="text-xl font-black tracking-[-0.04em] text-foreground">{c.title}</h3>
+                  {c.note ? (
+                    <p className="mt-1 text-sm font-medium leading-snug text-foreground/75">
+                      {c.note}
+                    </p>
+                  ) : null}
                 </div>
               </div>
             </Reveal>
           ))}
+        </div>
+        <div className="mt-6 flex justify-center">
+          <ButtonLink to="/gallery" variant="glass">
+            View all Before & After
+          </ButtonLink>
         </div>
       </section>
 

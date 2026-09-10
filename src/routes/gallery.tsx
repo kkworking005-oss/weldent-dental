@@ -77,8 +77,14 @@ function GalleryPage() {
                 />
                 <div className="flex flex-wrap items-start justify-between gap-2 px-3 py-4">
                   <div className="min-w-0">
-                    <h2 className="text-xl leading-tight">{c.title}</h2>
-                    <p className="mt-1 text-sm text-muted-foreground">{c.note}</p>
+                    <h2 className="text-[clamp(1.3rem,2vw,2rem)] font-black leading-[1.08] tracking-[-0.05em] text-foreground">
+                      {c.title}
+                    </h2>
+                    {c.note ? (
+                      <p className="mt-1 text-sm font-medium leading-snug text-foreground/75">
+                        {c.note}
+                      </p>
+                    ) : null}
                   </div>
                   <span className="shrink-0 rounded-pill glass-quiet px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-widest text-primary">
                     {c.category}

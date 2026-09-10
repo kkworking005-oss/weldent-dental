@@ -23,8 +23,12 @@ export function ServiceCard({ service }: { service: Service }) {
         <span className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-primary/70">
           {service.category}
         </span>
-        <h3 className="mt-3 text-2xl leading-tight">{service.title}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{service.short}</p>
+        <h3 className="mt-3 text-[clamp(1.5rem,2vw,2.25rem)] font-black leading-[1.08] tracking-[-0.05em] text-foreground">
+          {service.title}
+        </h3>
+        <p className="mt-3 text-sm font-medium leading-snug text-foreground/75">
+          {service.short}
+        </p>
         <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium text-primary">
           Explore
           <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

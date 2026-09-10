@@ -187,9 +187,9 @@ const galleryCases = [
   },
   {
     id: "add-4",
-    title: "Anterior Smile Rehabilitation",
+    title: "Laser Crown Exposure",
     category: "Restorative",
-    note: "A documented front-tooth rehabilitation case planned around the patient's clinical needs and treatment goals.",
+    note: "A minimally invasive laser procedure performed to safely expose a submerged front tooth, facilitating proper eruption and clinical function.",
   },
   {
     id: "1p",
