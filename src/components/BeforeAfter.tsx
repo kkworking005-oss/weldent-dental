@@ -19,7 +19,7 @@ export function BeforeAfter({
   afterImageClassName?: string | undefined;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const beforeRef = useRef<HTMLImageElement>(null);
+  const beforeRef = useRef<HTMLDivElement>(null);
   const handleRef = useRef<HTMLDivElement>(null);
   const positionRef = useRef(52);
   const frameRef = useRef<number | null>(null);
@@ -68,19 +68,23 @@ export function BeforeAfter({
         height={576}
         className={cn("absolute inset-0 size-full object-cover", afterImageClassName)}
       />
-      <img
-        src={before}
-        srcSet={beforeSrcSet}
-        sizes="(max-width: 767px) calc(100vw - 64px), 556px"
-        alt={`${alt} — before`}
-        loading="lazy"
-        decoding="async"
-        width={768}
-        height={576}
-        className={cn("absolute inset-0 size-full object-cover", beforeImageClassName)}
+      <div
         ref={beforeRef}
+        className="absolute inset-0 overflow-hidden"
         style={{ clipPath: "inset(0 48% 0 0)" }}
-      />
+      >
+        <img
+          src={before}
+          srcSet={beforeSrcSet}
+          sizes="(max-width: 767px) calc(100vw - 64px), 556px"
+          alt={`${alt} — before`}
+          loading="lazy"
+          decoding="async"
+          width={768}
+          height={576}
+          className={cn("absolute inset-0 size-full object-cover", beforeImageClassName)}
+        />
+      </div>
       <div
         ref={handleRef}
         className="pointer-events-none absolute inset-y-0 w-px bg-white/90 shadow-lift"
