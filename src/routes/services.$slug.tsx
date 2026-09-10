@@ -3,10 +3,9 @@ import { Check, Clock, Users } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { Button, ButtonLink, Panel } from "@/components/kit";
 import { Reveal } from "@/components/motion";
-import { DoctorCard } from "@/components/cards";
 import { useBooking } from "@/components/BookingContext";
 import { ServiceImage } from "@/components/ServiceImage";
-import { doctors, services, type Service } from "@/lib/site";
+import { services, type Service } from "@/lib/site";
 import { absoluteUrl, canonicalLinks, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/services/$slug")({
@@ -39,7 +38,6 @@ export const Route = createFileRoute("/services/$slug")({
 function ServiceDetail() {
   const { service } = Route.useLoaderData() as { service: Service };
   const booking = useBooking();
-  const team = doctors.filter((doctor) => service.doctors.includes(doctor.slug));
   const pageUrl = absoluteUrl(`/services/${service.slug}`);
   const structuredData = [
     {
@@ -227,34 +225,6 @@ function ServiceDetail() {
           </Reveal>
         </div>
       </section>
-
-      {team.length ? (
-        <section className="shell py-10">
-          <Reveal>
-            <h2 className="text-[1.75rem] md:text-[2.6rem]">Clinician profile</h2>
-          </Reveal>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {team.map((d, i) => (
-              <Reveal key={d.slug} delay={i * 80}>
-                <DoctorCard doctor={d} />
-              </Reveal>
-            ))}
-          </div>
-        </section>
-      ) : (
-        <section className="shell py-10">
-          <Reveal>
-            <Panel tone="quiet">
-              <h2 className="text-2xl">Treating clinician</h2>
-              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-                The clinic will confirm the appropriately qualified treating clinician after
-                reviewing your case. No individual clinician is attributed to this treatment on the
-                website until their role is verified.
-              </p>
-            </Panel>
-          </Reveal>
-        </section>
-      )}
 
       <section className="shell py-10">
         <Reveal>
