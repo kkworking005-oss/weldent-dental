@@ -178,22 +178,15 @@ export function AppointmentForm({ className }: { className?: string }) {
           <input name="doctor" type="hidden" value={onlyDoctor} />
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
-          <div className="relative">
-            <input
-              name="preferred_date"
-              type="date"
-              value={preferredDate}
-              onChange={(event) => setPreferredDate(event.target.value)}
-              className={`${fieldClass} booking-date`}
-              aria-label="Preferred date (required)"
-              required
-            />
-            {!preferredDate ? (
-              <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-sm text-muted-foreground">
-                Preferred date <span className="ml-1 text-primary">*</span>
-              </span>
-            ) : null}
-          </div>
+          <input
+            name="preferred_date"
+            type="date"
+            value={preferredDate}
+            onChange={(event) => setPreferredDate(event.target.value)}
+            className={`${fieldClass} booking-date`}
+            aria-label="Preferred date (required)"
+            required
+          />
           <select name="preferred_time" className={fieldClass} defaultValue="" required>
             <option value="" disabled>
               Preferred time
