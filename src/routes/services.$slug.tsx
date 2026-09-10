@@ -114,7 +114,7 @@ function ServiceDetail() {
                 service={service}
                 priority
                 sizes="(max-width: 767px) calc(100vw - 44px), (max-width: 1279px) calc(100vw - 80px), 1200px"
-                className="size-full object-cover"
+                className="size-full object-contain bg-white"
               />
             </div>
           </div>

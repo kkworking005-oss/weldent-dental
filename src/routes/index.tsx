@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, Sparkles, Clock, Quote } from "lucide-react";
+import { ArrowRight, ShieldCheck, Sparkles, Clock, Phone, Quote } from "lucide-react";
 import { Button, ButtonLink, Eyebrow, Panel, SectionHeading, btnClass } from "@/components/kit";
 import { Counter, Reveal } from "@/components/motion";
 import { DoctorCard, ServiceCard, TestimonialCard } from "@/components/cards";
@@ -74,10 +74,18 @@ function Home() {
               dental clinic near Bannerghatta Road for clear explanations, careful diagnosis and
               treatment options tailored to your needs.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button size="lg" onClick={booking.open}>
-                Book an appointment <ArrowRight className="size-4" />
-              </Button>
+            <div className="mt-8 flex flex-wrap items-start gap-3">
+              <div className="flex flex-col gap-3">
+                <Button size="lg" onClick={booking.open}>
+                  Book an appointment <ArrowRight className="size-4" />
+                </Button>
+                <a
+                  href={clinic.phoneHref}
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-pill border border-primary/25 px-5 py-3 text-sm font-medium text-primary transition hover:bg-primary/8"
+                >
+                  <Phone className="size-4" /> Call now {clinic.phone}
+                </a>
+              </div>
               <ButtonLink to="/services" variant="glass" size="lg">
                 Explore treatments
               </ButtonLink>

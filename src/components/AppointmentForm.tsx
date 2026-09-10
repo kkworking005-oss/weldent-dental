@@ -22,7 +22,6 @@ const schema = z.object({
 export const fieldClass =
   "w-full rounded-2xl glass-quiet px-4 py-3 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/70 focus:ring-2 focus:ring-primary/40";
 
-const times = ["Morning (10:30–12:30)", "Afternoon (12:30–4:30)", "Evening (4:30–9:00)"];
 const onlyDoctor = "Dr. Sheetal Kumar G";
 
 export function AppointmentForm({ className }: { className?: string }) {
@@ -187,16 +186,16 @@ export function AppointmentForm({ className }: { className?: string }) {
             aria-label="Preferred date (required)"
             required
           />
-          <select name="preferred_time" className={fieldClass} defaultValue="" required>
-            <option value="" disabled>
-              Preferred time
-            </option>
-            {times.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
+          <input
+            name="preferred_time"
+            type="time"
+            min="10:30"
+            max="21:00"
+            step="900"
+            className={`${fieldClass} booking-time`}
+            aria-label="Preferred appointment time (required)"
+            required
+          />
         </div>
         <textarea
           name="notes"

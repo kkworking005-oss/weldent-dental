@@ -16,7 +16,7 @@ export function ServiceCard({ service }: { service: Service }) {
       <div className="aspect-4/3 overflow-hidden rounded-[1.15rem] bg-primary/5">
         <ServiceImage
           service={service}
-          className="size-full object-cover group-hover:scale-[1.025]"
+          className="size-full object-contain bg-white group-hover:scale-[1.025]"
         />
       </div>
       <div className="flex flex-1 flex-col px-3.5 pb-3.5 pt-5 md:px-4 md:pb-4">
