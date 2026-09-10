@@ -7,7 +7,7 @@ const serviceImages: Record<string, string> = {
   "preventive-restorations": "/images/services/preventative care and restoration.webp",
   "root-canal": "/images/services/s3.webp",
   "crown-veneers-bridges": "/images/services/s4.webp",
-  "teeth-whitening-cosmetic": "/images/services/s6.webp",
+  "teeth-whitening-cosmetic": "/images/services/teeth-whitening-cosmetic.webp",
   dentures: "/images/services/s7.webp",
   "dental-implants": "/images/services/s8.webp",
   "braces-aligners": "/images/services/orthodontic-braces-aligners.webp",
