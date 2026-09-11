@@ -1,7 +1,7 @@
 const EXPERIENCE_START_YEAR = 2023;
 const SMILES_BASE_YEAR = 2023;
-const SMILES_AT_START = 2500;
-const ADDITIONAL_SMILES_PER_YEAR = 500;
+const SMILES_AT_START = 1000;
+const ADDITIONAL_SMILES_PER_YEAR = 1000;
 
 export function getYearsOfExperience(currentYear = new Date().getFullYear()): number {
   return currentYear - EXPERIENCE_START_YEAR;
