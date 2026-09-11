@@ -2,26 +2,29 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "weldent-dental",
   "main": "dist/server/server.js",
-  "compatibility_date": "2026-09-06",
+  "compatibility_date": "2026-09-11",
   "compatibility_flags": ["nodejs_compat"],
+
   "assets": {
     "directory": "dist/client",
-    "binding": "ASSETS",
+    "binding": "ASSETS"
   },
+
   "d1_databases": [
     {
       "binding": "weldent",
       "database_name": "weldent",
-      "database_id": "5c1e093d-e4a3-47fc-acfb-2b85331c4123",
-    },
+      "database_id": "67db18c9-197b-4df1-ac22-b656935b06d2"
+    }
   ],
+
   "observability": {
     "logs": {
       "enabled": true,
-      "invocation_logs": true,
+      "invocation_logs": true
     },
     "traces": {
-      "enabled": false,
-    },
-  },
+      "enabled": false
+    }
+  }
 }
