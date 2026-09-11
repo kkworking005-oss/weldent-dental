@@ -12,7 +12,10 @@ export default defineConfig({
       server: { entry: "server" },
       prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false },
       pages: [
-        { path: "/" },
+        // Do NOT prerender the homepage. It contains year-dependent stats (experience/smiles),
+        // so `/` must be SSR-rendered by the Worker at request/runtime instead of freezing the
+        // current year's values into static HTML at build time. Crawlers still receive complete
+        // HTML; no client-side JavaScript is required to see the current values.
         { path: "/about" },
         { path: "/services" },
         { path: "/services/check-ups" },
