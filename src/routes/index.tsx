@@ -133,9 +133,17 @@ function Home() {
                 <p className="font-display text-[2.7rem] leading-none">
                   <Counter to={s.value} suffix={s.suffix} />
                 </p>
-                <p className="mt-2 text-xs tracking-wide text-primary-foreground/70">{s.label}</p>
+                <p
+                  className={
+                    s.detail
+                      ? "mt-2 text-sm font-semibold tracking-wide text-primary-foreground"
+                      : "mt-2 text-xs tracking-wide text-primary-foreground/70"
+                  }
+                >
+                  {s.label}
+                </p>
                 {s.detail ? (
-                  <p className="mt-1 text-[0.68rem] leading-relaxed text-primary-foreground/55">
+                  <p className="mt-2 inline-block max-w-full rounded-full border border-white/20 bg-white/14 px-3 py-1.5 text-xs font-semibold leading-relaxed text-white shadow-sm backdrop-blur-md sm:text-sm">
                     {s.detail}
                   </p>
                 ) : null}
